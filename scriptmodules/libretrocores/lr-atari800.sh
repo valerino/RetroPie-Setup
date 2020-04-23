@@ -42,8 +42,29 @@ function configure_lr-atari800() {
     mkUserDir "$md_conf_root/atari800"
     moveConfigFile "$home/.lr-atari800.cfg" "$md_conf_root/atari800/lr-atari800.cfg"
 
+    # 800 is the default, handle 5200 separately with a custom core-options
+	_add_config="$configdir/atari5200/retroarch.cfg.add"
+	_custom_coreconfig="$configdir/atari5200/retroarch-core-options.cfg"
+	rm "$_add_config"
+	rm "$_custom_coreconfig"
+	iniConfig " = " "\"" "$_add_config"
+	iniSet "core_options_path" "$_custom_coreconfig"
+    {
+		echo 'atari800_artifacting = "enabled"'
+		echo 'atari800_cassboot = "disabled"'
+		echo 'atari800_internalbasic = "disabled"'
+		echo 'atari800_keyboard = "poll"'
+		echo 'atari800_ntscpal = "NTSC"'
+		echo 'atari800_opt1 = "disabled"'
+		echo 'atari800_opt2 = "disabled"'
+		echo 'atari800_resolution = "336x240"'
+		echo 'atari800_sioaccel = "enabled"'
+		echo 'atari800_system = "5200"'
+    } >> "$_custom_coreconfig"
+
     addEmulator 1 "lr-atari800" "atari800" "$md_inst/atari800_libretro.so"
-    addEmulator 1 "lr-atari800" "atari5200" "$md_inst/atari800_libretro.so"
+    addEmulator 0 "lr-atari800" "atari5200" "$md_inst/atari800_libretro.so --appendconfig $_add_config"
     addSystem "atari800"
     addSystem "atari5200"
 }
+
