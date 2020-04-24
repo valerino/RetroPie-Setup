@@ -11,7 +11,7 @@
 
 rp_module_id="gsplus"
 rp_module_desc="Apple II/GS emulator"
-rp_module_help="ROM Extensions: .gsp .2mg\n\nCopy your Apple II/GS games to $romdir/apple2gs\n\nCopy the required BIOS file ROM.03 or ROM.01 to $biosdir\n\n"
+rp_module_help="ROM Extensions: .gsp .txt .GSP .TXT\n\nCopy your Apple II/GS games to $romdir/apple2gs\n\nCopy the required BIOS file ROM.03 or ROM.01 to $biosdir\n\n"
 rp_module_section="exp"
 rp_module_flags=""
 
@@ -41,7 +41,7 @@ function configure_gsplus() {
     mkRomDir "apple2gs"
     
     addEmulator 1 "$md_id" "apple2gs" "$md_inst/gsplus.sh %ROM%"
-    addSystem "apple2gs" "Apple II/GS" ".gsp .2mg"
+    addSystem "apple2gs" "Apple II/GS" ".gsp .txt .GSP .TXT"
 
     [[ "$md_mode" == "remove" ]] && return
 
