@@ -142,6 +142,8 @@ function rp_callModule() {
     local md_desc="${__mod_desc[$md_idx]}"
     local md_help="${__mod_help[$md_idx]}"
     local md_type="${__mod_type[$md_idx]}"
+    local md_name="${__mod_name[$md_idx]}"
+    local md_ext="${__mod_ext[$md_idx]}"
     local md_flags="${__mod_flags[$md_idx]}"
     local md_build="$__builddir/$md_id"
     local md_inst="$(rp_getInstallPath $md_idx)"
@@ -569,6 +571,8 @@ function rp_registerModule() {
         __mod_id["$module_idx"]="$rp_module_id"
         __mod_type["$module_idx"]="$module_type"
         __mod_desc["$module_idx"]="$rp_module_desc"
+        __mod_ext["$module_idx"]="$rp_module_ext"
+        __mod_name["$module_idx"]="$rp_module_name"
         __mod_help["$module_idx"]="$rp_module_help"
         __mod_licence["$module_idx"]="$rp_module_licence"
         __mod_section["$module_idx"]="$rp_module_section"
@@ -593,6 +597,8 @@ function rp_registerAllModules() {
     __mod_id=()
     __mod_type=()
     __mod_desc=()
+    __mod_name=()
+    __mod_ext=()
     __mod_help=()
     __mod_licence=()
     __mod_section=()

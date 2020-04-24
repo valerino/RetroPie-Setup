@@ -31,7 +31,7 @@ function build_gsplus() {
 
 function install_gsplus() {
     md_ret_files=(
-        'bin/GSplus'
+    'bin/GSplus'
 	'bin/partls'
 	'bin/to_pro'
     )

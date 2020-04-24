@@ -10,8 +10,10 @@
 #
 
 rp_module_id="lr-mess-coco"
-rp_module_desc="MESS emulator (Tandy Color Computer) - MESS Port for libretro"
-rp_module_help="ROM Extensions: .zip .cas .bin .ccc .rom\n\n
+rp_module_name="Tandy Color-Computer"
+rp_module_ext=".zip .cas .bin .ccc .rom"
+rp_module_desc="MESS emulator ($rp_module_name) - MESS Port for libretro"
+rp_module_help="ROM Extensions: $rp_module_ext\n\n
 Put games in:\n
 $romdir/coco\n\n
 Put BIOS files in $biosdir:\n
@@ -19,15 +21,13 @@ coco.zip\n\n
 instructions to load .cas:\n\n
 https://www.youtube.com/watch?v=vITUfbk-sDk"
 
-
-
 rp_module_licence="GPL2 https://raw.githubusercontent.com/libretro/mame/master/LICENSE.md"
 rp_module_section="exp"
 rp_module_flags=""
 
 function depends_lr-mess-coco() {
-	_mess=$(dirname "$md_inst")/lr-mess/mess_libretro.so
-	if [ ! -f "$_mess" ]; then
+	local _mess=$(dirname "$md_inst")/lr-mess/mess_libretro.so
+	if [[ ! -f "$_mess" ]]; then
 		printMsgs dialog "cannot find '$_mess' !\n\nplease install 'lr-mess' package."
 		exit 1
 	fi
@@ -46,13 +46,13 @@ function install_lr-mess-coco()  {
 }
 
 function configure_lr-mess-coco() {
-	_mess=$(dirname "$md_inst")/lr-mess/mess_libretro.so
-	_retroarch_bin="$rootdir/emulators/retroarch/bin/retroarch"
-	_system="coco"
-	_config="$configdir/$_system/retroarch.cfg"
-	_add_config="$_config.add"
-	_custom_coreconfig="$configdir/$_system/custom-core-options.cfg"
-	_script="$configdir/$_system/run_mess.sh"
+	local _mess=$(dirname "$md_inst")/lr-mess/mess_libretro.so
+	local _retroarch_bin="$rootdir/emulators/retroarch/bin/retroarch"
+	local _system="coco"
+	local _config="$configdir/$_system/retroarch.cfg"
+	local _add_config="$_config.add"
+	local _custom_coreconfig="$configdir/$_system/custom-core-options.cfg"
+	local _script="$configdir/$_system/run_mess.sh"
 
 	# create retroarch configuration
 	ensureSystemretroconfig "$_system"
@@ -80,5 +80,5 @@ function configure_lr-mess-coco() {
 	addEmulator 0 "$md_id-cart" "$_system" "$_script $_retroarch_bin $_mess $_config coco $biosdir -cart %ROM%"
 
 	# add system to es_systems.cfg as normal
-	addSystem "$_system" "Tandy Color Computer" ".zip .cas .bin .ccc .rom"
+	addSystem "$_system" "$md_name" "$md_ext"
 }

@@ -17,8 +17,10 @@
 #
 
 rp_module_id="lr-mess-bbcmicro"
-rp_module_desc="MESS emulator (BBC-Micro) - MESS Port for libretro"
-rp_module_help="ROM Extensions: .zip .ssd\n\n
+rp_module_name="BBC-Micro"
+rp_module_ext=".zip .ssd"
+rp_module_desc="MESS emulator ($rp_module_name) - MESS Port for libretro"
+rp_module_help="ROM Extensions: $rp_module_ext\n\n
 Put games in:\n
 $romdir/bbcmicro\n\n
 Put BIOS files in $biosdir:\n
@@ -30,8 +32,8 @@ rp_module_section="exp"
 rp_module_flags=""
 
 function depends_lr-mess-bbcmicro() {
-	_mess=$(dirname "$md_inst")/lr-mess/mess_libretro.so
-	if [ ! -f "$_mess" ]; then
+	local _mess=$(dirname "$md_inst")/lr-mess/mess_libretro.so
+	if [[ ! -f "$_mess" ]]; then
 		printMsgs dialog "cannot find '$_mess' !\n\nplease install 'lr-mess' package."
 		exit 1
 	fi
@@ -50,13 +52,13 @@ function install_lr-mess-bbcmicro()  {
 }
 
 function configure_lr-mess-bbcmicro() {
-	_mess=$(dirname "$md_inst")/lr-mess/mess_libretro.so
-	_retroarch_bin="$rootdir/emulators/retroarch/bin/retroarch"
-	_system="bbcmicro"
-	_config="$configdir/$_system/retroarch.cfg"
-	_add_config="$_config.add"
-	_custom_coreconfig="$configdir/$_system/custom-core-options.cfg"
-	_script="$configdir/$_system/run_mess.sh"
+	local _mess=$(dirname "$md_inst")/lr-mess/mess_libretro.so
+	local _retroarch_bin="$rootdir/emulators/retroarch/bin/retroarch"
+	local _system="bbcmicro"
+	local _config="$configdir/$_system/retroarch.cfg"
+	local _add_config="$_config.add"
+	local _custom_coreconfig="$configdir/$_system/custom-core-options.cfg"
+	local _script="$configdir/$_system/run_mess.sh"
 
 	# create retroarch configuration
 	ensureSystemretroconfig "$_system"
@@ -83,5 +85,5 @@ function configure_lr-mess-bbcmicro() {
 	addEmulator 1 "$md_id" "$_system" "$_script $_retroarch_bin $_mess $_config bbcb $biosdir -flop1 %ROM%"
 
 	# add system to es_systems.cfg as normal
-	addSystem "$_system" "BBC Micro" ".zip .bin"
+	addSystem "$_system" "$md_name" "$md_ext"
 }

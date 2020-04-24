@@ -10,21 +10,22 @@
 #
 
 rp_module_id="lr-mess-arcadia"
-rp_ext=".zip .bin"
-rp_sysname="Emerson Arcadia 2001"
-rp_module_desc="MESS emulator ($rp_sysname) - MESS Port for libretro"
-rp_module_help="ROM Extensions: $rp_ext\n\n
+rp_module_name="Emerson Arcadia 2001"
+rp_module_ext=".zip .bin"
+rp_module_desc="MESS emulator ($rp_module_name) - MESS Port for libretro"
+rp_module_help="ROM Extensions: $rp_module_ext\n\n
 Put games in:\n
 $romdir/arcadia\n\n
 Put BIOS files in $biosdir:\n
 arcadia.zip"
+
 rp_module_licence="GPL2 https://raw.githubusercontent.com/libretro/mame/master/LICENSE.md"
 rp_module_section="exp"
 rp_module_flags=""
 
 function depends_lr-mess-arcadia() {
-	_mess=$(dirname "$md_inst")/lr-mess/mess_libretro.so
-	if [ ! -f "$_mess" ]; then
+	local _mess=$(dirname "$md_inst")/lr-mess/mess_libretro.so
+	if [[ ! -f "$_mess" ]]; then
 		printMsgs dialog "cannot find '$_mess' !\n\nplease install 'lr-mess' package."
 		exit 1
 	fi
@@ -43,13 +44,13 @@ function install_lr-mess-arcadia() {
 }
 
 function configure_lr-mess-arcadia() {
-	_mess=$(dirname "$md_inst")/lr-mess/mess_libretro.so
-	_retroarch_bin="$rootdir/emulators/retroarch/bin/retroarch"
-	_system="arcadia"
-	_config="$configdir/$_system/retroarch.cfg"
-	_add_config="$_config.add"
-	_custom_coreconfig="$configdir/$_system/custom-core-options.cfg"
-	_script="$configdir/$_system/run_mess.sh"
+	local _mess=$(dirname "$md_inst")/lr-mess/mess_libretro.so
+	local _retroarch_bin="$rootdir/emulators/retroarch/bin/retroarch"
+	local _system="arcadia"
+	local _config="$configdir/$_system/retroarch.cfg"
+	local _add_config="$_config.add"
+	local _custom_coreconfig="$configdir/$_system/custom-core-options.cfg"
+	local _script="$configdir/$_system/run_mess.sh"
 
 	# create retroarch configuration
 	ensureSystemretroconfig "$_system"
@@ -76,5 +77,5 @@ function configure_lr-mess-arcadia() {
 	addEmulator 1 "$md_id" "$_system" "$_script $_retroarch_bin $_mess $_config $_system $biosdir -cart %ROM%"
 
 	# add system to es_systems.cfg as normal
-	addSystem "$_system" "$rp_sysname" "$rp_ext"
+	addSystem "$_system" "$md_name" "$md_ext"
 }

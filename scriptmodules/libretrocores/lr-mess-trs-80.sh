@@ -10,7 +10,9 @@
 #
 
 rp_module_id="lr-mess-trs-80"
-rp_module_desc="MESS emulator (Tandy TRS-80, Model 3) - MESS Port for libretro"
+rp_module_name="Tandy TRS-80"
+rp_module_ext=".zip .cas .dsk"
+rp_module_desc="MESS emulator ($rp_module_name) - MESS Port for	 libretro"
 rp_module_help="ROM Extensions: .zip .cas .dsk .dmk\n\n
 Put games in:\n
 $romdir/trs-80\n\n
@@ -24,8 +26,8 @@ rp_module_section="exp"
 rp_module_flags=""
 
 function depends_lr-mess-trs-80() {
-	_mess=$(dirname "$md_inst")/lr-mess/mess_libretro.so
-	if [ ! -f "$_mess" ]; then
+	local _mess=$(dirname "$md_inst")/lr-mess/mess_libretro.so
+	if [[ ! -f "$_mess" ]]; then
 		printMsgs dialog "cannot find '$_mess' !\n\nplease install 'lr-mess' package."
 		exit 1
 	fi
@@ -44,13 +46,13 @@ function install_lr-mess-trs-80()  {
 }
 
 function configure_lr-mess-trs-80() {
-	_mess=$(dirname "$md_inst")/lr-mess/mess_libretro.so
-	_retroarch_bin="$rootdir/emulators/retroarch/bin/retroarch"
-	_system="trs-80"
-	_config="$configdir/$_system/retroarch.cfg"
-	_add_config="$_config.add"
-	_custom_coreconfig="$configdir/$_system/custom-core-options.cfg"
-	_script="$configdir/$_system/run_mess.sh"
+	local _mess=$(dirname "$md_inst")/lr-mess/mess_libretro.so
+	local _retroarch_bin="$rootdir/emulators/retroarch/bin/retroarch"
+	local _system="trs-80"
+	local _config="$configdir/$_system/retroarch.cfg"
+	local _add_config="$_config.add"
+	local _custom_coreconfig="$configdir/$_system/custom-core-options.cfg"
+	local _script="$configdir/$_system/run_mess.sh"
 
 	# create retroarch configuration
 	ensureSystemretroconfig "$_system"
@@ -78,5 +80,5 @@ function configure_lr-mess-trs-80() {
 	addEmulator 1 "$md_id-disk" "$_system" "$_script $_retroarch_bin $_mess $_config trs80m3 $biosdir -flop1 $biosdir/trsdos.zip -flop2 %ROM%"
 
 	# add system to es_systems.cfg as normal
-	addSystem "$_system" "Tandy TRS-80" ".zip .cas .dsk .dmk"
+	addSystem "$_system" "$md_name" "$md_ext"
 }

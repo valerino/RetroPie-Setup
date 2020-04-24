@@ -10,11 +10,13 @@
 #
 
 rp_module_id="lr-mess-apple2gs"
-rp_module_desc="MESS emulator (Apple II/GS) - MESS Port for libretro"
-rp_module_help="ROM Extensions: .zip .2mg\n\n
+rp_module_name="Apple II/GS"
+rp_module_ext=".zip .2mg"
+rp_module_desc="MESS emulator ($rp_module_name) - MESS Port for libretro"
+rp_module_help="ROM Extensions: $rp_module_ext\n\n
 Put games in:\n
 $romdir/apple2gs\n\n
-Put BIOS files in $biosdir:\n
+Put BIOS files in $biosdir:\n	
 apple2gs.zip\n\n"
 
 rp_module_licence="GPL2 https://raw.githubusercontent.com/libretro/mame/master/LICENSE.md"
@@ -22,8 +24,8 @@ rp_module_section="exp"
 rp_module_flags=""
 
 function depends_lr-mess-apple2gs() {
-	_mess=$(dirname "$md_inst")/lr-mess/mess_libretro.so
-	if [ ! -f "$_mess" ]; then
+	local _mess=$(dirname "$md_inst")/lr-mess/mess_libretro.so
+	if [[ ! -f "$_mess" ]]; then
 		printMsgs dialog "cannot find '$_mess' !\n\nplease install 'lr-mess' package."
 		exit 1
 	fi
@@ -42,13 +44,13 @@ function install_lr-mess-apple2gs()  {
 }
 
 function configure_lr-mess-apple2gs() {
-	_mess=$(dirname "$md_inst")/lr-mess/mess_libretro.so
-	_retroarch_bin="$rootdir/emulators/retroarch/bin/retroarch"
-	_system="apple2gs"
-	_config="$configdir/$_system/retroarch.cfg"
-	_add_config="$_config.add"
-	_custom_coreconfig="$configdir/$_system/custom-core-options.cfg"
-	_script="$configdir/$_system/run_mess.sh"
+	local _mess=$(dirname "$md_inst")/lr-mess/mess_libretro.so
+	local _retroarch_bin="$rootdir/emulators/retroarch/bin/retroarch"
+	local _system="apple2gs"
+	local _config="$configdir/$_system/retroarch.cfg"
+	local _add_config="$_config.add"
+	local _custom_coreconfig="$configdir/$_system/custom-core-options.cfg"
+	local _script="$configdir/$_system/run_mess.sh"
 
 	# create retroarch configuration
 	ensureSystemretroconfig "$_system"
@@ -60,7 +62,7 @@ function configure_lr-mess-apple2gs() {
 	iniSet "mame_boot_from_cli" "disabled"
 
 	# this will get loaded too via --append_config
-	iniConfig " = " "\"" "$_add_config"
+	iniConfig " = " "\"" "$_add_config"	
 	iniSet "core_options_path" "$_custom_coreconfig"
 	#iniSet "save_on_exit" "false"
 
@@ -75,5 +77,5 @@ function configure_lr-mess-apple2gs() {
 	addEmulator 1 "$md_id" "$_system" "$_script $_retroarch_bin $_mess $_config apple2gs $biosdir -flop3 %ROM%"
 
 	# add system to es_systems.cfg as normal
-	addSystem "$_system" "Apple II/GS" ".zip .2mg"
+	addSystem "$_system" "$md_name" "$md_ext"
 }
