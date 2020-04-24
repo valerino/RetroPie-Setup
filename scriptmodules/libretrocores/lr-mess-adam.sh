@@ -9,29 +9,23 @@
 # at https://raw.githubusercontent.com/RetroPie/RetroPie-Setup/master/LICENSE.md
 #
 
-# note: 
-# currently the script crashes when launched from emulationstation, i still have to figure out why ......
-# to test run_mess.sh is working with bbcmicro, install as normal then from the shell run something like:
-#
-# /opt/retropie/configs/bbcmicro/run_mess.sh /opt/retropie/emulators/retroarch/bin/retroarch /opt/retropie/libretrocores/lr-mess/mess_libretro.so /opt/retropie/configs/bbcmicro/retroarch.cfg bbcb /home/pi/RetroPie/BIOS -flop1 /home/pi/RetroPie/roms/bbcmicro/Bruce\ Lee\ \(Europe\).ssd  
-#
-
-rp_module_id="lr-mess-bbcmicro"
-rp_module_name="BBC-Micro"
-rp_module_ext=".zip .ssd"
+rp_module_id="lr-mess-adam"
+rp_module_name="Coleco ADAM"
+rp_module_ext=".zip .dsk"
 rp_module_desc="MESS emulator ($rp_module_name) - MESS Port for libretro"
 rp_module_help="ROM Extensions: $rp_module_ext\n\n
 Put games in:\n
-$romdir/bbcmicro\n\n
+$romdir/adam\n\n
 Put BIOS files in $biosdir:\n
-bbcb.zip, bbcbp.zip, bbcbp128.zip, saa5050.zip\n\n
-Press SHIFT+F12 to autoboot the loaded disk!\n\n"
+adam.zip, adam_fdc.zip, adam_prn.zip\n\n
+How to load games:\n
+http://www.progettoemma.net/mess/system.php?machine=adam"
 
 rp_module_licence="GPL2 https://raw.githubusercontent.com/libretro/mame/master/LICENSE.md"
 rp_module_section="exp"
 rp_module_flags=""
 
-function depends_lr-mess-bbcmicro() {
+function depends_lr-mess-adam() {
 	local _mess=$(dirname "$md_inst")/lr-mess/mess_libretro.so
 	if [[ ! -f "$_mess" ]]; then
 		printMsgs dialog "cannot find '$_mess' !\n\nplease install 'lr-mess' package."
@@ -39,22 +33,22 @@ function depends_lr-mess-bbcmicro() {
 	fi
 }
 
-function sources_lr-mess-bbcmicro() {
+function sources_lr-mess-adam() {
 	true
 }
 
-function build_lr-mess-bbcmicro() {
+function build_lr-mess-adam() {
 	true
 }
 
-function install_lr-mess-bbcmicro()  {
+function install_lr-mess-adam()  {
 	true
 }
 
-function configure_lr-mess-bbcmicro() {
+function configure_lr-mess-adam() {
 	local _mess=$(dirname "$md_inst")/lr-mess/mess_libretro.so
 	local _retroarch_bin="$rootdir/emulators/retroarch/bin/retroarch"
-	local _system="bbcmicro"
+	local _system="adam"
 	local _config="$configdir/$_system/retroarch.cfg"
 	local _add_config="$_config.add"
 	local _custom_coreconfig="$configdir/$_system/custom-core-options.cfg"
@@ -81,8 +75,8 @@ function configure_lr-mess-bbcmicro() {
 	cp "$scriptdir/scriptmodules/run_mess.sh" "$_script"
 	chmod 755 "$_script"
 
-	# add the emulators.cfg as normal, pointing to the above script
-	addEmulator 1 "$md_id" "$_system" "$_script $_retroarch_bin $_mess $_config bbcb $biosdir -flop1 %ROM%"
+		# add the emulators.cfg as normal, pointing to the above script
+	addEmulator 1 "$md_id" "$_system" "$_script $_retroarch_bin $_mess $_config adam $biosdir -flop1 %ROM%"
 
 	# add system to es_systems.cfg as normal
 	addSystem "$_system" "$md_name" "$md_ext"
