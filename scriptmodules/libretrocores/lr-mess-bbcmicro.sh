@@ -9,13 +9,6 @@
 # at https://raw.githubusercontent.com/RetroPie/RetroPie-Setup/master/LICENSE.md
 #
 
-# note: 
-# currently the script crashes when launched from emulationstation, i still have to figure out why ......
-# to test run_mess.sh is working with bbcmicro, install as normal then from the shell run something like:
-#
-# /opt/retropie/configs/bbcmicro/run_mess.sh /opt/retropie/emulators/retroarch/bin/retroarch /opt/retropie/libretrocores/lr-mess/mess_libretro.so /opt/retropie/configs/bbcmicro/retroarch.cfg bbcb /home/pi/RetroPie/BIOS -flop1 /home/pi/RetroPie/roms/bbcmicro/Bruce\ Lee\ \(Europe\).ssd  
-#
-
 rp_module_id="lr-mess-bbcmicro"
 rp_module_name="BBC-Micro"
 rp_module_ext=".zip .ssd"
@@ -86,4 +79,8 @@ function configure_lr-mess-bbcmicro() {
 
 	# add system to es_systems.cfg as normal
 	addSystem "$_system" "$md_name" "$md_ext"
+
+	# FIXME: this is a dirty hack until we find why this emulator doesn't work through runcommand.sh
+	# this overwrites the entry in es_system.cfg to call run_mess.sh directly without passing by runcommand.sh
+	setESSystem "$md_name" "$_system" "$romdir/$_system" "$md_ext" "$_script $_retroarch_bin $_mess $_config bbcb $biosdir -flop1 %ROM%" "$_system" "$_system"
 }
