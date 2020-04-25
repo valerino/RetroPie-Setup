@@ -18,7 +18,8 @@ Put games in:\n
 $romdir/cdimono1\n\n
 Put BIOS files in $biosdir:\n
 cdimono1.zip\n\n
-Use https://forums.launchbox-app.com/files/file/804-philips-cd-i-to-chd-batch-converter/ to convert .cue/bin images to .chd (windows only)"
+Convert .cue/.bin to .chd:\n
+https://forums.launchbox-app.com/files/file/804-philips-cd-i-to-chd-batch-converter/ (windows only)"
 
 rp_module_licence="GPL2 https://raw.githubusercontent.com/libretro/mame/master/LICENSE.md"
 rp_module_section="exp"
