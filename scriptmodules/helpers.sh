@@ -1177,6 +1177,9 @@ function addSystem() {
     # add the extensions again as uppercase
     exts+=" ${exts^^}"
 
+    # trim whitespaces
+    exts=$(echo $exts | xargs echo -n)
+
     setESSystem "$fullname" "$system" "$path" "$exts" "$cmd" "$platform" "$theme"
 }
 
