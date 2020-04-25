@@ -9,23 +9,21 @@
 # at https://raw.githubusercontent.com/RetroPie/RetroPie-Setup/master/LICENSE.md
 #
 
-rp_module_id="lr-mess-coco"
-rp_module_name="Tandy Color-Computer"
-rp_module_ext=".zip .cas .bin .ccc .rom"
+rp_module_id="lr-mess-advision"
+rp_module_name="Entex AdventureVision"
+rp_module_ext=".zip .bin"
 rp_module_desc="MESS emulator ($rp_module_name) - MESS Port for libretro"
 rp_module_help="ROM Extensions: $rp_module_ext\n\n
 Put games in:\n
-$romdir/coco\n\n
+$romdir/advision\n\n
 Put BIOS files in $biosdir:\n
-coco.zip\n\n
-How to load games:\n
-http://www.progettoemma.net/mess/system.php?machine=coco"
+advision.zip"
 
 rp_module_licence="GPL2 https://raw.githubusercontent.com/libretro/mame/master/LICENSE.md"
 rp_module_section="exp"
 rp_module_flags=""
 
-function depends_lr-mess-coco() {
+function depends_lr-mess-advision() {
 	local _mess=$(dirname "$md_inst")/lr-mess/mess_libretro.so
 	if [[ ! -f "$_mess" ]]; then
 		printMsgs dialog "cannot find '$_mess' !\n\nplease install 'lr-mess' package."
@@ -33,22 +31,22 @@ function depends_lr-mess-coco() {
 	fi
 }
 
-function sources_lr-mess-coco() {
+function sources_lr-mess-advision() {
 	true
 }
 
-function build_lr-mess-coco() {
+function build_lr-mess-advision() {
 	true
 }
 
-function install_lr-mess-coco()  {
+function install_lr-mess-advision() {
 	true
 }
 
-function configure_lr-mess-coco() {
+function configure_lr-mess-advision() {
 	local _mess=$(dirname "$md_inst")/lr-mess/mess_libretro.so
 	local _retroarch_bin="$rootdir/emulators/retroarch/bin/retroarch"
-	local _system="coco"
+	local _system="advision"
 	local _config="$configdir/$_system/retroarch.cfg"
 	local _add_config="$_config.add"
 	local _custom_coreconfig="$configdir/$_system/custom-core-options.cfg"
@@ -76,8 +74,7 @@ function configure_lr-mess-coco() {
 	chmod 755 "$_script"
 
 	# add the emulators.cfg as normal, pointing to the above script
-	addEmulator 1 "$md_id-cass" "$_system" "$_script $_retroarch_bin $_mess $_config coco $biosdir -cass %ROM%"
-	addEmulator 0 "$md_id-cart" "$_system" "$_script $_retroarch_bin $_mess $_config coco $biosdir -cart %ROM%"
+	addEmulator 1 "$md_id" "$_system" "$_script $_retroarch_bin $_mess $_config $_system $biosdir -cart %ROM%"
 
 	# add system to es_systems.cfg as normal
 	addSystem "$_system" "$md_name" "$md_ext"
