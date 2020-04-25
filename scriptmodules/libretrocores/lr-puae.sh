@@ -11,7 +11,7 @@
 
 rp_module_id="lr-puae"
 rp_module_desc="P-UAE Amiga emulator port for libretro"
-rp_module_help="ROM Extensions: .adf .uae\n\nCopy your roms to $romdir/amiga and create configs as .uae"
+rp_module_help="ROM Extensions: .adf .uae .lha .adz\n\nCopy your roms to $romdir/amiga and create configs as .uae"
 rp_module_licence="GPL2 https://raw.githubusercontent.com/libretro/PUAE/master/COPYING"
 rp_module_section="exp"
 
@@ -36,4 +36,9 @@ function configure_lr-puae() {
     ensureSystemretroconfig "amiga"
     addEmulator 1 "$md_id" "amiga" "$md_inst/puae_libretro.so"
     addSystem "amiga"
+
+    mkRomDir "amigacd32"
+    ensureSystemretroconfig "amigacd32"
+    addEmulator 1 "$md_id" "amigacd32" "$md_inst/puae_libretro.so"
+    addSystem "amigacd32" "Amiga CD-32" ".adf .lha"
 }
