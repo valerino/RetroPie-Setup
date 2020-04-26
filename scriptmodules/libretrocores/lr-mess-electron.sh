@@ -86,5 +86,4 @@ function configure_lr-mess-electron() {
 	# FIXME: this is a dirty hack until we find why this emulator doesn't work through runcommand.sh
 	# this overwrites the entry in es_system.cfg to call run_mess.sh directly without passing by runcommand.sh
 	setESSystem "$md_name" "$_system" "$romdir/$_system" "$md_ext" "$_script $_retroarch_bin $_mess $_config electron $biosdir -cass %ROM%" "$_system" "$_system"
-
 }

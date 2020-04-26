@@ -18,7 +18,8 @@ Put games in:\n
 $romdir/bbcmicro\n\n
 Put BIOS files in $biosdir:\n
 bbcb.zip, bbcbp.zip, bbcbp128.zip, saa5050.zip\n\n
-Press SHIFT+F12 to autoboot the loaded disk!\n\n"
+How to load games:\n
+Press SHIFT+F12 to autoboot the loaded disk\n"
 
 rp_module_licence="GPL2 https://raw.githubusercontent.com/libretro/mame/master/LICENSE.md"
 rp_module_section="exp"
