@@ -38,6 +38,15 @@ function configure_lr-bluemsx() {
     mkRomDir "msx"
     ensureSystemretroconfig "msx"
 
+    mkRomDir "msx2"
+    ensureSystemretroconfig "msx2"
+
+    mkRomDir "msx2plus"
+    ensureSystemretroconfig "msx2plus"
+
+    mkRomDir "msxturbo"
+    ensureSystemretroconfig "msxturbo"
+
     mkRomDir "coleco"
     ensureSystemretroconfig "coleco"
 
@@ -53,6 +62,15 @@ function configure_lr-bluemsx() {
 
     addEmulator 1 "$md_id" "msx" "$md_inst/bluemsx_libretro.so"
     addSystem "msx"
+
+    addEmulator 1 "$md_id" "msx2" "$md_inst/bluemsx_libretro.so"
+    addSystem "msx2" "MSX2" ".rom .mx1 .mx2 .col .m3u .dsk .zip"
+
+    addEmulator 1 "$md_id" "msx2plus" "$md_inst/bluemsx_libretro.so"
+    addSystem "msx2plus" "MSX2+" ".rom .mx1 .mx2 .col .dsk .m3u .zip"
+
+    addEmulator 1 "$md_id" "msxturbo" "$md_inst/bluemsx_libretro.so"
+    addSystem "msxturbo" "MSX Turbo-R" ".rom .mx1 .mx2 .col .m3u .dsk .zip"
 
     addEmulator 1 "$md_id" "coleco" "$md_inst/bluemsx_libretro.so"
     addSystem "coleco"
