@@ -53,7 +53,7 @@ function configure_lr-mess-electron() {
 	local _config="$configdir/$_system/retroarch.cfg"
 	local _add_config="$_config.add"
 	local _custom_coreconfig="$configdir/$_system/custom-core-options.cfg"
-	local _script="$configdir/$_system/run_mess.sh"
+	local _script="$scriptdir/scriptmodules/run_mess.sh"
 
 	# create retroarch configuration
 	ensureSystemretroconfig "$_system"
@@ -72,8 +72,7 @@ function configure_lr-mess-electron() {
 	# setup rom folder
 	mkRomDir "$_system"
 
-	# copy the juicy script which will do the all the hard work to the fake-core config folder
-	cp "$scriptdir/scriptmodules/run_mess.sh" "$_script"
+	# ensure run_mess.sh script is executable
 	chmod 755 "$_script"
 
 	# add the emulators.cfg as normal, pointing to the above script

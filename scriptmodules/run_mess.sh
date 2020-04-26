@@ -10,6 +10,7 @@ fi
 _retroarchbin="$1"
 _messpath="$2"
 _config="$3"
+_cfgdir=$(dirname "$_config")
 _system="$4"
 _biosdir="$5"
 
@@ -17,6 +18,7 @@ echo "[.] parameters dump"
 echo "\t_retroarchbin: $_retroarchbin"
 echo "\t_messpath: $_messpath"
 echo "\t_config: $_config (+ $_config.add)"
+echo "\t_cfg_directory: $_cfgdir"
 echo "\t_system: $_system"
 echo "\t_biosdir: $_biosdir"
 
@@ -25,6 +27,9 @@ _cmdarr=()
 _cmdarr+=( "$_system" )
 _cmdarr+=( "-rp" )
 _cmdarr+=( "$_biosdir" )
+_cmdarr+=( "-cfg_directory" )
+_cmdarr+=( "$_cfgdir" )
+
 _count=0
 _stopadd=false
 for _param in "$@"; do

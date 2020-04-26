@@ -18,7 +18,8 @@ Put games in:\n
 $romdir/oric\n\n
 Put BIOS files in $biosdir:\n
 oric1.zip\n\n
-It appears that MESS/MAME do not have floppy support for the Oric Atmos, as flop-1 is an invalid command. Documentation is sparse here. The source code suggests disk support, but there is no [apparent] supporting command-line argument."
+How to load games:\n
+*CLOAD\"\"\n"
 
 rp_module_licence="GPL2 https://raw.githubusercontent.com/libretro/mame/master/LICENSE.md"
 rp_module_section="exp"
@@ -51,7 +52,7 @@ function configure_lr-mess-oric() {
 	local _config="$configdir/$_system/retroarch.cfg"
 	local _add_config="$_config.add"
 	local _custom_coreconfig="$configdir/$_system/custom-core-options.cfg"
-	local _script="$configdir/$_system/run_mess.sh"
+	local _script="$scriptdir/scriptmodules/run_mess.sh"
 
 	# create retroarch configuration
 	ensureSystemretroconfig "$_system"
@@ -70,12 +71,11 @@ function configure_lr-mess-oric() {
 	# setup rom folder
 	mkRomDir "$_system"
 
-	# copy the juicy script which will do the all the hard work to the fake-core config folder
-	cp "$scriptdir/scriptmodules/run_mess.sh" "$_script"
+	# ensure run_mess.sh script is executable
 	chmod 755 "$_script"
 
 	# add the emulators.cfg as normal, pointing to the above script
-  addEmulator 1 "$md_id-tap" "$_system" "$_script $_retroarch_bin $_mess $_config orica $biosdir -cass %ROM%"
+  	addEmulator 1 "$md_id-tap" "$_system" "$_script $_retroarch_bin $_mess $_config orica $biosdir -cass %ROM%"
   
 	# add system to es_systems.cfg as normal
 	addSystem "$_system" "$md_name" "$md_ext"

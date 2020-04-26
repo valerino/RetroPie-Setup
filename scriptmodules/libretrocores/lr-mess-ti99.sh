@@ -13,9 +13,9 @@ rp_module_id="lr-mess-ti99"
 rp_module_name="TI-99/4A Home Computer"
 rp_module_ext=".rpk"
 rp_module_desc="MESS emulator ($rp_module_name) - MESS Port for libretro"
-rp_module_help="ROM Extensions: .rpk .RPK\n\n
-Put .rtp games in:\n
-  $romdir/ti99/\n\n
+rp_module_help="ROM Extensions: $rp_module_ext\n\n
+Put games in:\n
+  $romdir/ti99\n\n
 Put BIOS file in $biosdir:\n
   ti99_4a.zip (US/EU)\n
   ti99_evpc.zip (EVPC)\n
@@ -55,7 +55,7 @@ function configure_lr-mess-ti99() {
 	local _config="$configdir/$_system/retroarch.cfg"
 	local _add_config="$_config.add"
 	local _custom_coreconfig="$configdir/$_system/custom-core-options.cfg"
-	local _script="$configdir/$_system/run_mess.sh"
+	local _script="$scriptdir/scriptmodules/run_mess.sh"
 
 	# create retroarch configuration
 	ensureSystemretroconfig "$_system"
@@ -74,8 +74,7 @@ function configure_lr-mess-ti99() {
 	# setup rom folder
 	mkRomDir "$_system"
 
-	# copy the juicy script which will do the all the hard work to the fake-core config folder
-	cp "$scriptdir/scriptmodules/run_mess.sh" "$_script"
+	# ensure run_mess.sh script is executable
 	chmod 755 "$_script"
 
 	# add the emulators.cfg as normal, pointing to the above script
