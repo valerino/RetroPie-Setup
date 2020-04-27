@@ -79,7 +79,7 @@ function configure_lr-mess-ti99() {
 
 	# add the emulators.cfg as normal, pointing to the above script
 	for region in "${regions[@]}"; do
-		addEmulator 1 "$md_id${region}" "$_system" "$_script $_retroarch_bin $_mess $_config ti99$region $biosdir -nat -joy -cart1 %ROM% -ioport peb -ioport:peb:slot3 speech"
+		addEmulator 1 "$md_id${region}" "$_system" "$_script $_retroarch_bin $_mess $_config ti99$region $biosdir -ioport peb -ioport:peb:slot3 speech -nat -joy -cart1 %ROM%"
 	done
 
 	# add system to es_systems.cfg as normal
