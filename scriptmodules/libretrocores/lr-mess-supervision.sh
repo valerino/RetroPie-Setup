@@ -64,6 +64,10 @@ function configure_lr-mess-supervision() {
 	iniSet "core_options_path" "$_custom_coreconfig"
 	#iniSet "save_on_exit" "false"
 
+	# set permissions for configurations
+ 	chown $user:$user "$_custom_coreconfig" 
+ 	chown $user:$user "$_add_config" 
+
 	# setup rom folder
 	mkRomDir "$_system"
 
@@ -71,7 +75,7 @@ function configure_lr-mess-supervision() {
 	chmod 755 "$_script"
 
 	# add the emulators.cfg as normal, pointing to the above script
-	addEmulator 1 "$md_id-cart" "$_system" "$_script $_retroarch_bin $_mess $_config svision $biosdir -cart %ROM%"
+	addEmulator 1 "$md_id" "$_system" "$_script $_retroarch_bin $_mess $_config svision $biosdir -cart %ROM%"
 
 	# add system to es_systems.cfg as normal
 	addSystem "$_system" "$md_name" "$md_ext"

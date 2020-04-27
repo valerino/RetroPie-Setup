@@ -11,7 +11,7 @@
 
 rp_module_id="lr-atari800"
 rp_module_desc="Atari 8-bit/800/5200 emulator - Atari800 port for libretro"
-rp_module_help="ROM Extensions: .a52 .bas .bin .car .xex .atr .xfd .dcm .atr.gz .xfd.gz\n\nCopy your Atari800 games to $romdir/atari800\n\nCopy your Atari 5200 roms to $romdir/atari5200 You need to copy the Atari 800/5200 BIOS files (5200.ROM, ATARIBAS.ROM, ATARIOSB.ROM and ATARIXL.ROM) to the folder $biosdir"
+rp_module_help="ROM Extensions: .a52 .bas .bin .car .xex .atr .xfd .dcm .atr.gz .xfd.gz\n\nCopy your Atari800,5200,XEGS games to $romdir/atari800, $romdir/atari5200, $romdir/atarixegs\n\n\You need to copy the Atari 800/5200 BIOS files (5200.ROM, ATARIBAS.ROM, ATARIOSB.ROM and ATARIXL.ROM) to the folder $biosdir"
 rp_module_licence="GPL2 https://raw.githubusercontent.com/libretro/libretro-atari800/master/atari800/COPYING"
 rp_module_section="main"
 
@@ -32,19 +32,19 @@ function install_lr-atari800() {
     )
 }
 
-function configure_lr-atari800() {
-    mkRomDir "atari800"
-    mkRomDir "atari5200"
+## @fn add_atari_custom_system()
+## @param system 'atari5200' or 'atarixegs'
+## @param atarisystem '5200' or 'xegs'
+## @brief sets private lr-atari800 configuration for atari 5200 or XEGS
+function add_atari_custom_system() {
+    local _system="$1"
+    local _atarisystem="$2"
 
-    ensureSystemretroconfig "atari800"
-    ensureSystemretroconfig "atari5200"
-
-    mkUserDir "$md_conf_root/atari800"
-    moveConfigFile "$home/.lr-atari800.cfg" "$md_conf_root/atari800/lr-atari800.cfg"
-
-    # 800 is the default, handle 5200 separately with a custom core-options
-	_add_config="$configdir/atari5200/retroarch.cfg.add"
-	_custom_coreconfig="$configdir/atari5200/retroarch-core-options.cfg"
+    # atari 5200 via custom core options
+    mkRomDir "$_system"
+    ensureSystemretroconfig "$_system"
+	local _add_config="$configdir/$_system/retroarch.cfg.add"
+	local _custom_coreconfig="$configdir/$_system/retroarch-core-options.cfg"
 	rm "$_add_config"
 	rm "$_custom_coreconfig"
 	iniConfig " = " "\"" "$_add_config"
@@ -59,12 +59,28 @@ function configure_lr-atari800() {
 		echo 'atari800_opt2 = "disabled"'
 		echo 'atari800_resolution = "336x240"'
 		echo 'atari800_sioaccel = "enabled"'
-		echo 'atari800_system = "5200"'
+		echo "atari800_system = \""$_atarisystem"\""
     } >> "$_custom_coreconfig"
+ 	chown $user:$user "$_custom_coreconfig" 
+ 	chown $user:$user "$_add_config" 
+    addEmulator 0 "lr-atari800" "$_system" "$md_inst/atari800_libretro.so --appendconfig $_add_config"
+    addSystem "$_system" "Atari XEGS" ".a52 .bas .bin .car .xex .atr .xfd .dcm .atr.gz .xfd.gz"
+}
 
+function configure_lr-atari800() {
+
+    # atari 800 is the default
+    mkRomDir "atari800"
+    ensureSystemretroconfig "atari800"
+    mkUserDir "$md_conf_root/atari800"
+    moveConfigFile "$home/.lr-atari800.cfg" "$md_conf_root/atari800/lr-atari800.cfg"
     addEmulator 1 "lr-atari800" "atari800" "$md_inst/atari800_libretro.so"
-    addEmulator 0 "lr-atari800" "atari5200" "$md_inst/atari800_libretro.so --appendconfig $_add_config"
     addSystem "atari800"
-    addSystem "atari5200"
+
+    # atari 5200 via custom core options
+    add_atari_custom_system "atari5200" "5200"
+
+    # atari XE/GS via custom core options
+    add_atari_custom_system "atarixegs" "130XE (128K)"
 }
 

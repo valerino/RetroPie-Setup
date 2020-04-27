@@ -71,6 +71,10 @@ function configure_lr-mess-ti99() {
 	iniSet "core_options_path" "$_custom_coreconfig"
 	#iniSet "save_on_exit" "false"
 
+	# set permissions for configurations
+ 	chown $user:$user "$_custom_coreconfig" 
+ 	chown $user:$user "$_add_config" 
+
 	# setup rom folder
 	mkRomDir "$_system"
 
