@@ -75,7 +75,7 @@ function configure_lr-mess-megaduck() {
 	chmod 755 "$_script"
 
 	# add the emulators.cfg as normal, pointing to the above script
-	addEmulator 1 "$md_id-cart" "$_system" "$_script $_retroarch_bin $_mess $_config megaduck $biosdir -cart %ROM%"
+	addEmulator 1 "$md_id" "$_system" "$_script $_retroarch_bin $_mess $_config megaduck $biosdir -cart %ROM%"
 
 	# add system to es_systems.cfg as normal
 	addSystem "$_system" "$md_name" "$md_ext"
