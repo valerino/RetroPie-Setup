@@ -20,8 +20,8 @@ function sources_lr-vice-xpet() {
 }
 
 function build_lr-vice-xpet() {
-    make -f Makefile.libretro clean
-    make -f Makefile.libretro EMUTYPE=xpet
+    make -f Makefile clean
+    make -f Makefile EMUTYPE=xpet
     md_ret_require="$md_build/vice_xpet_libretro.so"
 }
 

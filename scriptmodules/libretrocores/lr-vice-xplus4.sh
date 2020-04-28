@@ -20,8 +20,8 @@ function sources_lr-vice-xplus4() {
 }
 
 function build_lr-vice-xplus4() {
-    make -f Makefile.libretro clean
-    make -f Makefile.libretro EMUTYPE=xplus4
+    make -f Makefile clean
+    make -f Makefile EMUTYPE=xplus4
     md_ret_require="$md_build/vice_xplus4_libretro.so"
 }
 

@@ -20,8 +20,8 @@ function sources_lr-vice-xvic() {
 }
 
 function build_lr-vice-xvic() {
-    make -f Makefile.libretro clean
-    make -f Makefile.libretro EMUTYPE=xvic
+    make -f Makefile clean
+    make -f Makefile EMUTYPE=xvic
     md_ret_require="$md_build/vice_xvic_libretro.so"
 }
 

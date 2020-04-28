@@ -20,8 +20,8 @@ function sources_lr-vice-x128() {
 }
 
 function build_lr-vice-x128() {
-    make -f Makefile.libretro clean
-    make -f Makefile.libretro EMUTYPE=x128
+    make -f Makefile clean
+    make -f Makefile EMUTYPE=x128
     md_ret_require="$md_build/vice_x128_libretro.so"
 }
 
