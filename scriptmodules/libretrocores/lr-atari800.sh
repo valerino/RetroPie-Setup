@@ -35,10 +35,14 @@ function install_lr-atari800() {
 ## @fn add_atari_custom_system()
 ## @param system 'atari5200' or 'atarixegs'
 ## @param atarisystem '5200' or 'xegs'
+## @param name system name for es_systems.cfg
+## @param ext supported extensions
 ## @brief sets private lr-atari800 configuration for atari 5200 or XEGS
 function add_atari_custom_system() {
     local _system="$1"
     local _atarisystem="$2"
+    local _name="$3"
+    local _ext="$4"
 
     # atari 5200 via custom core options
     mkRomDir "$_system"
@@ -64,7 +68,7 @@ function add_atari_custom_system() {
  	chown $user:$user "$_custom_coreconfig" 
  	chown $user:$user "$_add_config" 
     addEmulator 0 "lr-atari800" "$_system" "$md_inst/atari800_libretro.so --appendconfig $_add_config"
-    addSystem "$_system" "Atari XEGS" ".a52 .bas .bin .car .xex .atr .xfd .dcm .atr.gz .xfd.gz"
+    addSystem "$_system" "$_name" "$_ext"
 }
 
 function configure_lr-atari800() {
@@ -78,9 +82,9 @@ function configure_lr-atari800() {
     addSystem "atari800"
 
     # atari 5200 via custom core options
-    add_atari_custom_system "atari5200" "5200"
+    add_atari_custom_system "atari5200" "5200" "Atari 5200" ".a52 .bas .bin .car .xex .atr .xfd .dcm .atr.gz .xfd.gz" 
 
     # atari XE/GS via custom core options
-    add_atari_custom_system "atarixegs" "130XE (128K)"
+    add_atari_custom_system "atarixegs" "130XE (128K)" "Atari XEGS" ".a52 .bas .bin .car .xex .atr .xfd .dcm .atr.gz .xfd.gz" 
 }
 
