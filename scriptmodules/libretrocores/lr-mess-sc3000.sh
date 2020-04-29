@@ -75,7 +75,7 @@ function configure_lr-mess-sc3000() {
 	chmod 755 "$_script"
 
 	# add the emulators.cfg as normal, pointing to the above script
-	addEmulator 1 "$md_id" "$_system" "$_script $_retroarch_bin $_mess $_config $_system $biosdir -cart %ROM%"
+	addEmulator 1 "$md_id" "$_system" "$_script $_retroarch_bin $_mess $_config sc3000 $biosdir -cart %ROM%"
 
 	# add system to es_systems.cfg as normal
 	addSystem "$_system" "$md_name" "$md_ext"
