@@ -11,7 +11,7 @@
 
 rp_module_id="lr-ppsspp"
 rp_module_desc="PlayStation Portable emu - PPSSPP port for libretro"
-rp_module_help="ROM Extensions: .iso .pbp .cso\n\nCopy your PlayStation Portable roms to $romdir/psp"
+rp_module_help="ROM Extensions: .iso .pbp .cso\n\nCopy your PlayStation Portable roms to $romdir/psp and $romsdir/pspminis"
 rp_module_licence="GPL2 https://raw.githubusercontent.com/RetroPie/ppsspp/master/LICENSE.TXT"
 rp_module_section="opt"
 rp_module_flags="!aarch64"
@@ -39,6 +39,9 @@ function configure_lr-ppsspp() {
     mkRomDir "psp"
     ensureSystemretroconfig "psp"
 
+    mkRomDir "pspminis"
+    ensureSystemretroconfig "pspminis"
+
     if [[ "$md_mode" == "install" ]]; then
         mkUserDir "$biosdir/PPSSPP"
         cp -Rv "$md_inst/assets/"* "$biosdir/PPSSPP/"
@@ -47,4 +50,7 @@ function configure_lr-ppsspp() {
 
     addEmulator 1 "$md_id" "psp" "$md_inst/ppsspp_libretro.so"
     addSystem "psp"
+
+    addEmulator 1 "$md_id" "pspminis" "$md_inst/ppsspp_libretro.so"
+    addSystem "pspminis" "PSP Minis" ".cso .iso .pbp"
 }
