@@ -47,15 +47,26 @@ function configure_lr-snes9x() {
     mkRomDir "satellaview"
     ensureSystemretroconfig "satellaview"
 
+    mkRomDir "sfc"
+    ensureSystemretroconfig "sfc"
+
+    mkRomDir "snesmsu1"
+    ensureSystemretroconfig "snesmsu1"
+
     local def=0
     ! isPlatform "armv6" && ! isPlatform "armv7" && def=1
     addEmulator $def "$md_id" "snes" "$md_inst/snes9x_libretro.so"
     addSystem "snes"
 
     addEmulator 1 "$md_id" "sufami" "$md_inst/snes9x_libretro.so"
-    addSystem "sufami" "SuFami Turbo" ".smc .zip"
+    addSystem "sufami" "SuFami Turbo" ".smc .sfc .zip"
 
     addEmulator 1 "$md_id" "satellaview" "$md_inst/snes9x_libretro.so"
-    addSystem "satellaview" "SatellaView" ".smc .zip"
+    addSystem "satellaview" "SatellaView" ".smc .sfc .zip"
 
+    addEmulator 1 "$md_id" "snesmsu1" "$md_inst/snes9x_libretro.so"
+    addSystem "snesmsu1" "SNES MSU-1" ".smc .sfc .zip"
+
+    addEmulator 1 "$md_id" "sfc" "$md_inst/snes9x_libretro.so"
+    addSystem "sfc" "Super Famicom" ".smc .sfc .zip"
 }
