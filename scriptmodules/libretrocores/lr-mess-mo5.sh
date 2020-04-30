@@ -19,7 +19,7 @@ $romdir/mo5\n\n
 Put BIOS files in $biosdir:\n
 mo5.zip, mo5e.zip, mo5nr.zip\n\n
 How to load games (tapes):\n
-type LOAD<enter> then RUN<enter>\n\n
+type LOAD<enter> then RUN<enter>\n
 To load cartridges, choose the -cart emulator in runcommand options"
 
 rp_module_licence="GPL2 https://raw.githubusercontent.com/libretro/mame/master/LICENSE.md"

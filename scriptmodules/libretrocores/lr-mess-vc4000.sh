@@ -9,24 +9,19 @@
 # at https://raw.githubusercontent.com/RetroPie/RetroPie-Setup/master/LICENSE.md
 #
 
-rp_module_id="lr-mess-svi318"
-rp_module_name="Spectravideo SVI-318/328"
-rp_module_ext=".zip .cas .bin"
+rp_module_id="lr-mess-vc4000"
+rp_module_name="Interton VC-4000"
+rp_module_ext=".zip .bin"
 rp_module_desc="MESS emulator ($rp_module_name) - MESS Port for libretro"
 rp_module_help="ROM Extensions: $rp_module_ext\n\n
 Put games in:\n
-$romdir/svi318\n\n
-Put BIOS files in $biosdir:\n
-svi318.zip, svi328.zip\n\n
-How to load games (tapes):\n
-type CLOAD<enter>, SCRLK->Tape Control->Play, SCRLK again, get back to machine, RUN<enter>\n
-To load cartridges, choose the -cart emulator in runcommand options\n"
+$romdir/vc4000\n\n"
 
 rp_module_licence="GPL2 https://raw.githubusercontent.com/libretro/mame/master/LICENSE.md"
 rp_module_section="exp"
 rp_module_flags=""
 
-function depends_lr-mess-svi318() {
+function depends_lr-mess-vc4000() {
 	local _mess=$(dirname "$md_inst")/lr-mess/mess_libretro.so
 	if [[ ! -f "$_mess" ]]; then
 		printMsgs dialog "cannot find '$_mess' !\n\nplease install 'lr-mess' package."
@@ -34,22 +29,22 @@ function depends_lr-mess-svi318() {
 	fi
 }
 
-function sources_lr-mess-svi318() {
+function sources_lr-mess-vc4000() {
 	true
 }
 
-function build_lr-mess-svi318() {
+function build_lr-mess-vc4000() {
 	true
 }
 
-function install_lr-mess-svi318() {
+function install_lr-mess-vc4000()  {
 	true
 }
 
-function configure_lr-mess-svi318() {
+function configure_lr-mess-vc4000() {
 	local _mess=$(dirname "$md_inst")/lr-mess/mess_libretro.so
 	local _retroarch_bin="$rootdir/emulators/retroarch/bin/retroarch"
-	local _system="svi318"
+	local _system="vc4000"
 	local _config="$configdir/$_system/retroarch.cfg"
 	local _add_config="$_config.add"
 	local _custom_coreconfig="$configdir/$_system/custom-core-options.cfg"
@@ -80,8 +75,7 @@ function configure_lr-mess-svi318() {
 	chmod 755 "$_script"
 
 	# add the emulators.cfg as normal, pointing to the above script
-	addEmulator 1 "$md_id-cass" "$_system" "$_script $_retroarch_bin $_mess $_config svi328 $biosdir -cass %ROM%"
-	addEmulator 0 "$md_id-cart" "$_system" "$_script $_retroarch_bin $_mess $_config svi328 $biosdir -cart %ROM%"
+	addEmulator 1 "$md_id" "$_system" "$_script $_retroarch_bin $_mess $_config $_system $biosdir -cart %ROM%"
 
 	# add system to es_systems.cfg as normal
 	addSystem "$_system" "$md_name" "$md_ext"
