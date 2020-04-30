@@ -11,7 +11,7 @@
 
 rp_module_id="lr-mgba"
 rp_module_desc="(Super) Game Boy Color/GBA emulator - MGBA (optimised) port for libretro"
-rp_module_help="ROM Extensions: .gb .gbc .gba .zip\n\nCopy your Game Boy roms to $romdir/gb\nGame Boy Color roms to $romdir/gbc\nGame Boy Advance roms to $romdir/gba\n\nCopy the recommended BIOS files gb_bios.bin, gbc_bios.bin, sgb_bios.bin and gba_bios.bin to $biosdir"
+rp_module_help="ROM Extensions: .gb .gbc .gba .zip\n\nCopy your Game Boy roms to $romdir/gb\nGame Boy Color roms to $romdir/gbc\nGame Boy Advance roms to $romdir/gba\nSuper Game Boy roms to $romdir/sgb\n\nCopy the recommended BIOS files gb_bios.bin, gbc_bios.bin, sgb_bios.bin and gba_bios.bin to $biosdir"
 rp_module_licence="MPL2 https://raw.githubusercontent.com/libretro/mgba/master/LICENSE"
 rp_module_section="main"
 rp_module_flags=""
@@ -50,4 +50,11 @@ function configure_lr-mgba() {
         addEmulator "$def" "$md_id" "$system" "$md_inst/mgba_libretro.so"
         addSystem "$system"
     done
+
+    # super gameboy
+    mkRomDir "sgb"
+    ensureSystemretroconfig "sgb"
+    addEmulator 1 "$md_id" "sgb" "$md_inst/mgba_libretro.so"
+    addSystem "sgb" "Super Gameboy" ".gb .zip"
+
 }
