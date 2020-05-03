@@ -21,8 +21,8 @@ function sources_lr-vice() {
 }
 
 function build_lr-vice() {
-    make -f Makefile clean
-    make -f Makefile
+    make clean
+    make
     md_ret_require="$md_build/vice_x64_libretro.so"
 }
 
