@@ -61,6 +61,8 @@ function install_lr-flycast() {
 function configure_lr-flycast() {
     mkRomDir "dreamcast"
     ensureSystemretroconfig "dreamcast"
+    mkRomDir "atomiswave"
+    ensureSystemretroconfig "atomiswave"
 
     mkUserDir "$biosdir/dc"
 
@@ -75,4 +77,8 @@ function configure_lr-flycast() {
     # segfaults on the rpi without redirecting stdin from </dev/null
     addEmulator $def "$md_id" "dreamcast" "$md_inst/flycast_libretro.so </dev/null"
     addSystem "dreamcast"
+
+    # add atomiswave too
+    addEmulator 1 "$md_id" "atomiswave" "$md_inst/flycast_libretro.so </dev/null"
+    addSystem "atomiswave" "Sammy Atomiswave" ".chd .zip"
 }
