@@ -42,5 +42,7 @@ function configure_lr-beetle-pce-fast() {
     ensureSystemretroconfig "pcengine"
 
     addEmulator 1 "$md_id" "pcengine" "$md_inst/mednafen_pce_fast_libretro.so"
+    addEmulator 1 "$md_id" "pce-cd" "$md_inst/mednafen_pce_fast_libretro.so"
     addSystem "pcengine"
+	addSystem "pce-cd" "PC Engine CD" ".chd .cue"
 }
