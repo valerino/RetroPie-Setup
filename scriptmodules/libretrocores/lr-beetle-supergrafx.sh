@@ -34,7 +34,12 @@ function install_lr-beetle-supergrafx() {
 function configure_lr-beetle-supergrafx() {
     mkRomDir "sgfx"
     ensureSystemretroconfig "sgfx"
+	mkRomDir "supergrafx"
+	ensureSystemretroconfig "supergrafx"
 
-    addEmulator 0 "$md_id" "sgfx" "$md_inst/mednafen_supergrafx_libretro.so"
+    addEmulator 1 "$md_id" "sgfx" "$md_inst/mednafen_supergrafx_libretro.so"
+	addEmulator 1 "$md_id" "supergrafx" "$md_inst/mednafen_supergrafx_libretro.so"
+
     addSystem "sgfx" "Supergrafx" ".pce .zip"
+	addSystem "supergrafx" "Supergrafx" ".pce .zip"
 }
