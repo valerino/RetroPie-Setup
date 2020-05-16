@@ -14,7 +14,7 @@ rp_module_desc="CoolCV Colecovision Emulator"
 rp_module_help="ROM Extensions: .bin .col .rom .zip\n\nCopy your Colecovision roms to $romdir/coleco"
 rp_module_licence="PROP"
 rp_module_section="opt"
-rp_module_flags="!all videocore"
+#rp_module_flags="!all videocore"
 
 function depends_coolcv() {
     getDepends libsdl2-dev
@@ -27,9 +27,15 @@ function install_bin_coolcv() {
 
 function configure_coolcv() {
     mkRomDir "coleco"
+	mkRomDir "adam"
 
     moveConfigFile "$home/coolcv_mapping.txt" "$md_conf_root/coleco/coolcv_mapping.txt"
+	cp "$md_conf_root/coleco/coolcv_mapping.txt" "$md_conf_root/adam/coolcv_mapping.txt"
 
     addEmulator 1 "$md_id" "coleco" "$md_inst/coolcv_pi %ROM%"
     addSystem "coleco"
+
+   	addEmulator 1 "$md_id" "adam" "$md_inst/coolcv_pi %ROM%"
+    addSystem "adam" "Coleco Adam" ".zip .dsk"
+
 }

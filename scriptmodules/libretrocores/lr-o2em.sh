@@ -38,4 +38,8 @@ function configure_lr-o2em() {
 
     addEmulator 1 "$md_id" "videopac" "$md_inst/o2em_libretro.so"
     addSystem "videopac"
+
+    addEmulator 1 "$md_id" "odyssey2" "$md_inst/o2em_libretro.so"
+    addSystem "odyssey2" "Magnavox Odyssey2" ".bin .zip"
+
 }
