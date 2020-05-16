@@ -19,7 +19,7 @@ $romdir/oric\n\n
 Put BIOS files in $biosdir:\n
 oric1.zip\n\n
 How to load games:\n
-*CLOAD\"\"\n"
+CLOAD\"\"\n"
 
 rp_module_licence="GPL2 https://raw.githubusercontent.com/libretro/mame/master/LICENSE.md"
 rp_module_section="exp"
