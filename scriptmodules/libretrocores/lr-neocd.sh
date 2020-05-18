@@ -34,9 +34,13 @@ function install_lr-neocd() {
 }
 
 function configure_lr-neocd() {
-    mkRomDir "neocdz"
-    ensureSystemretroconfig "neocdz"
+    mkRomDir "neogeocd"
+    ensureSystemretroconfig "neogeocd"
 
-    addEmulator 0 "$md_id" "neocdz" "$md_inst/neocd_libretro.so"
-    addSystem "neocdz" "NeoGeo CD" ".chd .cue"
+	ln -s "$romdir/neogeocd" "$romdir/neocdz"
+	ln -s "$configdir/neogeocd" "$configdir/neocdz"
+
+    addEmulator 0 "$md_id" "neogeocd" "$md_inst/neocd_libretro.so"
+	
+    addSystem "neogeocd" "NeoGeo CD" ".chd .cue"
 }
