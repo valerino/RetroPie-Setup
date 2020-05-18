@@ -18,13 +18,20 @@ function depends_crt() {
     true
 }
 
+function reboot_func() {
+    if [[ "$1" = "0" ]]; then
+        clear
+        reboot
+    fi
+}
+
 function gui_crt() {
     local cmd=(dialog --backtitle "$__backtitle" --menu "Set CRT mode (needs reboot)" 22 86 16)
     local options=(
         1 "NTSC 4:3P"
         2 "NTSC 4:3P - Overscan scaled"
         3 "PAL 4:3P"
-        4 "PAL 4:3P- Overscan scaled"
+        4 "PAL 4:3P - Overscan scaled"
         5 "HDMI 1080p (no CRT)"
     )
     choice=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
@@ -32,24 +39,28 @@ function gui_crt() {
         case "$choice" in
             1)
                 cp "$scriptdir/scriptmodules/supplementary/config.crt.ntsc" /boot/config.txt
-                dialog --defaultno --yesno "Set to NTSC 4:3P 60hz. Reboot ?" 22 76 2>&1 >/dev/tty || continue
-                reboot_setup
+                dialog --defaultno --yesno "Set to NTSC 4:3P 60hz. Reboot ?" 22 76 2>&1 >/dev/tty
+                reboot_func "$?"
                 ;;
             2)
                 cp -r "$scriptdir/scriptmodules/supplementary/config.crt.ntsc.overscan_scaled" /boot/config.txt
-                dialog --defaultno --yesno "Set to NTSC 4:3P 60hz (Overscan scaled). Reboot ?" 22 76 2>&1 >/dev/tty || continue
+                dialog --defaultno --yesno "Set to NTSC 4:3P 60hz (Overscan scaled). Reboot ?" 22 76 2>&1 >/dev/tty
+                reboot_func "$?"
                 ;;
             3)
                 cp -r "$scriptdir/scriptmodules/supplementary/config.crt.pal" /boot/config.txt
-                dialog --defaultno --yesno "Set to PAL 4:3P 50hz. Reboot ?" 22 76 2>&1 >/dev/tty || continue
+                dialog --defaultno --yesno "Set to PAL 4:3P 50hz. Reboot ?" 22 76 2>&1 >/dev/tty
+                reboot_func "$?"
                 ;;
             4)
                 cp -r "$scriptdir/scriptmodules/supplementary/config.crt.pal.overscan_scaled" /boot/config.txt
-                dialog --defaultno --yesno "Set to PAL 4:3P 50hz (Overscan scaled). Reboot ?" 22 76 2>&1 >/dev/tty || continue
+                dialog --defaultno --yesno "Set to PAL 4:3P 50hz (Overscan scaled). Reboot ?" 22 76 2>&1 >/dev/tty
+                reboot_func "$?"
                 ;;
             5)
                 cp -r "$scriptdir/scriptmodules/supplementary/config.hdmi" /boot/config.txt
-                dialog --defaultno --yesno "Set to HDMI 1080p (no CRT). Reboot ?" 22 76 2>&1 >/dev/tty || continue
+                dialog --defaultno --yesno "Set to HDMI 1080p (no CRT). Reboot ?" 22 76 2>&1 >/dev/tty
+                reboot_func "$?"
                 ;;
         esac
     fi
