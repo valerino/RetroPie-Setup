@@ -43,22 +43,22 @@ function gui_crt() {
                 reboot_func "$?"
                 ;;
             2)
-                cp -r "$scriptdir/scriptmodules/supplementary/config.crt.ntsc.overscan_scaled" /boot/config.txt
+                cp "$scriptdir/scriptmodules/supplementary/config.crt.ntsc.scale_overscan" /boot/config.txt
                 dialog --defaultno --yesno "Set to NTSC 4:3P 60hz (Overscan scaled). Reboot ?" 22 76 2>&1 >/dev/tty
                 reboot_func "$?"
                 ;;
             3)
-                cp -r "$scriptdir/scriptmodules/supplementary/config.crt.pal" /boot/config.txt
+                cp "$scriptdir/scriptmodules/supplementary/config.crt.pal" /boot/config.txt
                 dialog --defaultno --yesno "Set to PAL 4:3P 50hz. Reboot ?" 22 76 2>&1 >/dev/tty
                 reboot_func "$?"
                 ;;
             4)
-                cp -r "$scriptdir/scriptmodules/supplementary/config.crt.pal.overscan_scaled" /boot/config.txt
+                cp "$scriptdir/scriptmodules/supplementary/config.crt.pal.scale_overscan" /boot/config.txt
                 dialog --defaultno --yesno "Set to PAL 4:3P 50hz (Overscan scaled). Reboot ?" 22 76 2>&1 >/dev/tty
                 reboot_func "$?"
                 ;;
             5)
-                cp -r "$scriptdir/scriptmodules/supplementary/config.hdmi" /boot/config.txt
+                cp "$scriptdir/scriptmodules/supplementary/config.hdmi" /boot/config.txt
                 dialog --defaultno --yesno "Set to HDMI 1080p (no CRT). Reboot ?" 22 76 2>&1 >/dev/tty
                 reboot_func "$?"
                 ;;
