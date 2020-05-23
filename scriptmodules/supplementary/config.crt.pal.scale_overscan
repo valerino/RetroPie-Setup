@@ -74,3 +74,6 @@ disable_overscan=0
 overscan_scale=1
 audio_pwm_mode=2
 
+framebuffer_width=320
+framebuffer_height=240
+
