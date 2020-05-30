@@ -37,8 +37,20 @@ function install_lr-theodore() {
 
 function configure_lr-theodore() {
     mkRomDir "moto"
+	mkRomDir "mo5"
+	mkRomDir "to8"
     ensureSystemretroconfig "moto"
+	ensureSystemretroconfig "mo5"
+	ensureSystemretroconfig "to8"
 
-    addEmulator 1 "$md_id" "moto" "$md_inst/theodore_libretro.so"
+    addEmulator 0 "$md_id" "moto" "$md_inst/theodore_libretro.so"
     addSystem "moto"
+
+
+    addEmulator 0 "$md_id-mo5" "mo5" "$md_inst/theodore_libretro.so"
+    addSystem "mo5"
+
+
+    addEmulator 0 "$md_id-to8" "to8" "$md_inst/theodore_libretro.so"
+    addSystem "to8"
 }
