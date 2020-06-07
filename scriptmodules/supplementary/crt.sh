@@ -32,7 +32,7 @@ function gui_crt() {
         2 "NTSC 4:3P - Overscan scaled"
         3 "PAL 4:3P"
         4 "PAL 4:3P - Overscan scaled"
-        5 "HDMI 1080p (no CRT)"
+        5 "HDMI 240p 60hz (no CRT)"
     )
     choice=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
     if [[ -n "$choice" ]]; then
