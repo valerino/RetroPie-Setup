@@ -44,14 +44,13 @@ function add_atari_custom_system() {
     local _name="$3"
     local _ext="$4"
 
-    # atari 5200 via custom core options
     mkRomDir "$_system"
+    mkUserDir "$md_conf_root/$_system"
     ensureSystemretroconfig "$_system"
-	local _add_config="$configdir/$_system/retroarch.cfg.add"
+	local _base_config="$configdir/$_system/retroarch.cfg"
 	local _custom_coreconfig="$configdir/$_system/retroarch-core-options.cfg"
-	rm "$_add_config"
 	rm "$_custom_coreconfig"
-	iniConfig " = " "\"" "$_add_config"
+	iniConfig " = " "\"" "$_base_config"
 	iniSet "core_options_path" "$_custom_coreconfig"
     {
 		echo 'atari800_artifacting = "enabled"'
@@ -66,20 +65,14 @@ function add_atari_custom_system() {
 		echo "atari800_system = \""$_atarisystem"\""
     } >> "$_custom_coreconfig"
  	chown $user:$user "$_custom_coreconfig" 
- 	chown $user:$user "$_add_config" 
-    addEmulator 0 "lr-atari800" "$_system" "$md_inst/atari800_libretro.so --appendconfig $_add_config"
+    addEmulator 0 "lr-atari800" "$_system" "$md_inst/atari800_libretro.so"
     addSystem "$_system" "$_name" "$_ext"
 }
 
 function configure_lr-atari800() {
 
-    # atari 800 is the default
-    mkRomDir "atari800"
-    ensureSystemretroconfig "atari800"
-    mkUserDir "$md_conf_root/atari800"
-    moveConfigFile "$home/.lr-atari800.cfg" "$md_conf_root/atari800/lr-atari800.cfg"
-    addEmulator 1 "lr-atari800" "atari800" "$md_inst/atari800_libretro.so"
-    addSystem "atari800"
+    # atari 800 via custom core options
+    add_atari_custom_system "atari800" "800XL (64K)" "Atari 800" ".a52 .bas .bin .car .xex .atr .xfd .dcm .atr.gz .xfd.gz" 
 
     # atari 5200 via custom core options
     add_atari_custom_system "atari5200" "5200" "Atari 5200" ".a52 .bas .bin .car .xex .atr .xfd .dcm .atr.gz .xfd.gz" 
