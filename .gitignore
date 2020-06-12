@@ -12,6 +12,9 @@ Thumbs.db
 # Generated files
 logs/
 tmp/
+
+# custom
+sshconfig
 *.code-workspace
 *.swp
 
