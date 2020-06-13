@@ -1,6 +1,8 @@
 RetroPie-Setup
 ==============
 
+[here are the additional improvements in this fork](./README-FORK.md)
+
 General Usage
 -------------
 
