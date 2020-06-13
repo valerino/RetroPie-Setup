@@ -32,7 +32,7 @@ These are the improvements to the original upstream repo (which i try to keep th
 * lr-snes9x: Nintendo SNES, added Sufami Turbo (sufami), Satellaview (satellaview), MSU-1 (snesmsu1), Super Famicom (sfc) as separate systems.
 * lr-theodore: uses mo5, to8 directories to differentiate different systems.
 
-## MESS SYSTEMS
+## MESS SYSTEMS THROUGH LR-MESS
 
 the following are all dependent on installing lr-mess first, as described here: https://retropie.org.uk/forum/post/217275
 
