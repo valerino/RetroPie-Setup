@@ -45,7 +45,7 @@ function gui_crt() {
                 cp "$scriptdir/scriptmodules/supplementary/config.crt.ntsc" /boot/config.txt
                 rm -f "$configdir"
                 ln -s "$configdir.crt" "$configdir"
-				chown $user:$user "$configdir"
+		chown $user:$user "$configdir"
                 dialog --defaultno --yesno "Set to NTSC 4:3P 60hz. Reboot ?" 22 76 2>&1 >/dev/tty
                 reboot_func "$?"
                 ;;
@@ -53,7 +53,7 @@ function gui_crt() {
                 cp "$scriptdir/scriptmodules/supplementary/config.crt.ntsc.scale_overscan" /boot/config.txt
                 rm -f "$configdir"
                 ln -s "$configdir.crt" "$configdir"
-				chown $user:$user "$configdir"
+		chown $user:$user "$configdir"
                 dialog --defaultno --yesno "Set to NTSC 4:3P 60hz (Overscan scaled). Reboot ?" 22 76 2>&1 >/dev/tty
                 reboot_func "$?"
                 ;;
@@ -61,7 +61,7 @@ function gui_crt() {
                 cp "$scriptdir/scriptmodules/supplementary/config.crt.pal" /boot/config.txt
                 rm -f "$configdir"
                 ln -s "$configdir.crt" "$configdir"
-				chown $user:$user "$configdir"
+		chown $user:$user "$configdir"
                 dialog --defaultno --yesno "Set to PAL 4:3P 50hz. Reboot ?" 22 76 2>&1 >/dev/tty
                 reboot_func "$?"
                 ;;
@@ -69,7 +69,7 @@ function gui_crt() {
                 cp "$scriptdir/scriptmodules/supplementary/config.crt.pal.scale_overscan" /boot/config.txt
                 rm -f "$configdir"
                 ln -s "$configdir.crt" "$configdir"
-				chown $user:$user "$configdir"
+		chown $user:$user "$configdir"
                 dialog --defaultno --yesno "Set to PAL 4:3P 50hz (Overscan scaled). Reboot ?" 22 76 2>&1 >/dev/tty
                 reboot_func "$?"
                 ;;
@@ -77,7 +77,7 @@ function gui_crt() {
                 cp "$scriptdir/scriptmodules/supplementary/config.hdmi" /boot/config.txt
                 rm -f "$configdir"
                 ln -s "$configdir.hdmi" "$configdir"
-				chown $user:$user "$configdir"
+		chown $user:$user "$configdir"
                 dialog --defaultno --yesno "Set to HDMI 1080p (no CRT). Reboot ?" 22 76 2>&1 >/dev/tty
                 reboot_func "$?"
                 ;;
