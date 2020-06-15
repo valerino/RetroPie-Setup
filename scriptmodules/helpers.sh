@@ -434,7 +434,8 @@ function setupDirectories() {
     # one config directory for crt, one for hdmi, defaults to hdmi
     mkUserDir "$configdir.hdmi"
     mkUserDir "$configdir.crt"
-    ln -s "$configdir.hdmi" "$configdir"
+    rm "$configdir"
+	ln -s "$configdir.hdmi" "$configdir"
     chown $user:$user "$configdir"
 
     mkUserDir "$configdir/all"
