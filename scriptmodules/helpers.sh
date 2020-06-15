@@ -430,7 +430,13 @@ function setupDirectories() {
     mkUserDir "$datadir"
     mkUserDir "$romdir"
     mkUserDir "$biosdir"
-    mkUserDir "$configdir"
+
+    # one config directory for crt, one for hdmi, defaults to hdmi
+    mkUserDir "$configdir.hdmi"
+    mkUserDir "$configdir.crt"
+    ln -s "$configdir.hdmi" "$configdir"
+    chown $user:$user "$configdir"
+
     mkUserDir "$configdir/all"
 
     # some home folders for configs that modules rely on
