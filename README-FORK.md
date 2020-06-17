@@ -4,7 +4,7 @@ These are the improvements to the original upstream repo (which i try to keep th
 
 ## CONFIGURATION MENU
 
-* CRT/HDMI: provides autoconfiguration of HDMI or CRT/PAL/NTSC outputs, needs reboot. this currently needs my [retrovpie configuration](https://github.com/valerino/retrovpie) to work correctly.
+* CRT/HDMI: provides autoconfiguration of HDMI or CRT/PAL/NTSC outputs (preserving configurations), needs reboot.
   
 ## STANDALONE EMULATORS
 
