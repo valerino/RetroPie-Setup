@@ -10,7 +10,7 @@
 #
 
 rp_module_id="crt"
-rp_module_desc="Configure CRT options"
+rp_module_desc="Configure CRT/HDMI options"
 rp_module_section="config"
 #rp_module_flags="!x86 !mali"
 
@@ -26,7 +26,7 @@ function reboot_func() {
 }
 
 function gui_crt() {
-    local cmd=(dialog --backtitle "$__backtitle" --menu "Set CRT mode (needs reboot)" 22 86 16)
+    local cmd=(dialog --backtitle "$__backtitle" --menu "Set CRT/HDMI mode (needs reboot)" 22 86 16)
     local options=(
         1 "NTSC 4:3P"
         2 "NTSC 4:3P - Overscan scaled"
@@ -45,7 +45,7 @@ function gui_crt() {
                 cp "$scriptdir/scriptmodules/supplementary/config.crt.ntsc" /boot/config.txt
                 rm -f "$configdir"
                 ln -s "$configdir.crt" "$configdir"
-		chown $user:$user "$configdir"
+		        chown $user:$user "$configdir"
                 dialog --defaultno --yesno "Set to NTSC 4:3P 60hz. Reboot ?" 22 76 2>&1 >/dev/tty
                 reboot_func "$?"
                 ;;
@@ -53,7 +53,7 @@ function gui_crt() {
                 cp "$scriptdir/scriptmodules/supplementary/config.crt.ntsc.scale_overscan" /boot/config.txt
                 rm -f "$configdir"
                 ln -s "$configdir.crt" "$configdir"
-		chown $user:$user "$configdir"
+                chown $user:$user "$configdir"
                 dialog --defaultno --yesno "Set to NTSC 4:3P 60hz (Overscan scaled). Reboot ?" 22 76 2>&1 >/dev/tty
                 reboot_func "$?"
                 ;;
@@ -61,7 +61,7 @@ function gui_crt() {
                 cp "$scriptdir/scriptmodules/supplementary/config.crt.pal" /boot/config.txt
                 rm -f "$configdir"
                 ln -s "$configdir.crt" "$configdir"
-		chown $user:$user "$configdir"
+		        chown $user:$user "$configdir"
                 dialog --defaultno --yesno "Set to PAL 4:3P 50hz. Reboot ?" 22 76 2>&1 >/dev/tty
                 reboot_func "$?"
                 ;;
@@ -69,7 +69,7 @@ function gui_crt() {
                 cp "$scriptdir/scriptmodules/supplementary/config.crt.pal.scale_overscan" /boot/config.txt
                 rm -f "$configdir"
                 ln -s "$configdir.crt" "$configdir"
-		chown $user:$user "$configdir"
+		        chown $user:$user "$configdir"
                 dialog --defaultno --yesno "Set to PAL 4:3P 50hz (Overscan scaled). Reboot ?" 22 76 2>&1 >/dev/tty
                 reboot_func "$?"
                 ;;
@@ -77,32 +77,31 @@ function gui_crt() {
                 cp "$scriptdir/scriptmodules/supplementary/config.hdmi" /boot/config.txt
                 rm -f "$configdir"
                 ln -s "$configdir.hdmi" "$configdir"
-		chown $user:$user "$configdir"
+		        chown $user:$user "$configdir"
                 dialog --defaultno --yesno "Set to HDMI 1080p (no CRT). Reboot ?" 22 76 2>&1 >/dev/tty
                 reboot_func "$?"
                 ;;
             6)
-                dialog --defaultno --yesno "Warning: all existing CRT configurations will be MERGED (overwrites existing + adds missing) with HDMI configurations. Continue ?" 22 76 2>&1 >/dev/tty
+                dialog --defaultno --yesno "Warning: all existing CRT configurations will be MERGED (overwrites existing + adds missing) with HDMI configurations. Continue (may take some time) ?" 22 76 2>&1 >/dev/tty
                 if [[ "$?" = "0" ]]; then
-                    cp -RL "$configdir.hdmi/*" "$configdir.crt"
+                    cp -RL "$configdir.hdmi"/* "$configdir.crt"
                 fi
                 ;;
             7)
-                cp -RL "$configdir.crt/*" "$configdir.hdmi"
-                dialog --defaultno --yesno "Warning: all existing HDMI configurations will be MERGED (overwrites existing + adds missing) with CRT configurations. Continue ?" 22 76 2>&1 >/dev/tty
+                dialog --defaultno --yesno "Warning: all existing HDMI configurations will be MERGED (overwrites existing + adds missing) with CRT configurations. Continue (may take some time) ?" 22 76 2>&1 >/dev/tty
                 if [[ "$?" = "0" ]]; then
-                    cp -RL "$configdir.crt/*" "$configdir.hdmi"
+                    cp -RL "$configdir.crt"/* "$configdir.hdmi"
                 fi
                 ;;
             8)
-                dialog --defaultno --yesno "Warning: all existing CRT configurations will be REPLACED (delete existing first) with HDMI configurations. Continue ?" 22 76 2>&1 >/dev/tty
+                dialog --defaultno --yesno "Warning: all existing CRT configurations will be REPLACED (delete existing first) with HDMI configurations. Continue (may take some time) ?" 22 76 2>&1 >/dev/tty
                 if [[ "$?" = "0" ]]; then
                     rm -rf "$configdir.crt"
                     cp -RL "$configdir.hdmi" "$configdir.crt"
                 fi
                 ;;
             9)
-                dialog --defaultno --yesno "Warning: all existing HDMI configurations will be REPLACED (delete existing first) with CRT configurations. Continue ?" 22 76 2>&1 >/dev/tty
+                dialog --defaultno --yesno "Warning: all existing HDMI configurations will be REPLACED (delete existing first) with CRT configurations. Continue (may take some time) ?" 22 76 2>&1 >/dev/tty
                 if [[ "$?" = "0" ]]; then
                     rm -rf "$configdir.hdmi"
                     cp -RL "$configdir.crt" "$configdir.hdmi"
