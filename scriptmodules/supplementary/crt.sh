@@ -82,29 +82,33 @@ function gui_crt() {
                 reboot_func "$?"
                 ;;
             6)
-                dialog --defaultno --yesno "Warning: all existing CRT configurations will be MERGED (overwrites existing + adds missing) with HDMI configurations. Continue (may take some time) ?" 22 76 2>&1 >/dev/tty
+                dialog --defaultno --yesno "Warning: all existing CRT configurations will be MERGED (overwrites existing + adds missing) with HDMI configurations.\n\nContinue (may take some time) ?" 22 76 2>&1 >/dev/tty
                 if [[ "$?" = "0" ]]; then
                     cp -RL "$configdir.hdmi"/* "$configdir.crt"
+		            chown -R $user:$user "$configdir.crt"
                 fi
                 ;;
             7)
-                dialog --defaultno --yesno "Warning: all existing HDMI configurations will be MERGED (overwrites existing + adds missing) with CRT configurations. Continue (may take some time) ?" 22 76 2>&1 >/dev/tty
+                dialog --defaultno --yesno "Warning: all existing HDMI configurations will be MERGED (overwrites existing + adds missing) with CRT configurations.\n\nContinue (may take some time) ?" 22 76 2>&1 >/dev/tty
                 if [[ "$?" = "0" ]]; then
                     cp -RL "$configdir.crt"/* "$configdir.hdmi"
+		            chown -R $user:$user "$configdir.hdmi"
                 fi
                 ;;
             8)
-                dialog --defaultno --yesno "Warning: all existing CRT configurations will be REPLACED (delete existing first) with HDMI configurations. Continue (may take some time) ?" 22 76 2>&1 >/dev/tty
+                dialog --defaultno --yesno "Warning: all existing CRT configurations will be REPLACED (delete existing first) with HDMI configurations.\n\nContinue (may take some time) ?" 22 76 2>&1 >/dev/tty
                 if [[ "$?" = "0" ]]; then
                     rm -rf "$configdir.crt"
                     cp -RL "$configdir.hdmi" "$configdir.crt"
+		            chown -R $user:$user "$configdir.crt"
                 fi
                 ;;
             9)
-                dialog --defaultno --yesno "Warning: all existing HDMI configurations will be REPLACED (delete existing first) with CRT configurations. Continue (may take some time) ?" 22 76 2>&1 >/dev/tty
+                dialog --defaultno --yesno "Warning: all existing HDMI configurations will be REPLACED (delete existing first) with CRT configurations.\n\nContinue (may take some time) ?" 22 76 2>&1 >/dev/tty
                 if [[ "$?" = "0" ]]; then
                     rm -rf "$configdir.hdmi"
                     cp -RL "$configdir.crt" "$configdir.hdmi"
+		            chown -R $user:$user "$configdir.hdmi"
                 fi
                 ;;
 
