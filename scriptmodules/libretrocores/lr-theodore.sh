@@ -47,10 +47,10 @@ function configure_lr-theodore() {
     addSystem "moto"
 
 
-    addEmulator 0 "$md_id-mo5" "mo5" "$md_inst/theodore_libretro.so"
+    addEmulator 1 "$md_id-mo5" "mo5" "$md_inst/theodore_libretro.so"
     addSystem "mo5"
 
 
-    addEmulator 0 "$md_id-to8" "to8" "$md_inst/theodore_libretro.so"
+    addEmulator 1 "$md_id-to8" "to8" "$md_inst/theodore_libretro.so"
     addSystem "to8"
 }
