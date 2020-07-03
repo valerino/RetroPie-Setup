@@ -80,12 +80,16 @@ function conf_build_vars() {
 
     # calculate build concurrency based on cores and available memory
     __jobs=1
+    local unit=512
+    isPlatform "64bit" && unit=$(($unit + 256))
     if [[ "$(nproc)" -gt 1 ]]; then
-        # if we have less than 1gb of ram free, then limit build jobs to 2
-        if [[ "$__memory_avail" -lt 1024 ]]; then
-           __jobs=2
+        local nproc="$(nproc)"
+        # max one thread per unit (MB) of ram
+        local max_jobs=$(($__memory_avail / $unit))
+        if [[ "$max_jobs" -lt "$nproc" ]]; then
+            __jobs="$max_jobs"
         else
-           __jobs=$(nproc)
+            __jobs="$nproc"
         fi
     fi
     __default_makeflags="-j${__jobs}"
@@ -93,8 +97,6 @@ function conf_build_vars() {
     # set our default gcc optimisation level
     if [[ -z "$__opt_flags" ]]; then
         __opt_flags="$__default_opt_flags"
-        # -pipe is faster but will use more memory - so let's only add it if we have at least 512MB ram.
-        [[ "$__memory_avail" -ge 512 ]] && __opt_flags+=" -pipe"
     fi
 
     # set default cpu flags
@@ -198,16 +200,19 @@ function get_os_version() {
                     ;;
             esac
             ;;
-        LinuxMint)
+        LinuxMint|Linuxmint)
             if [[ "$__os_desc" != LMDE* ]]; then
                 if compareVersions "$__os_release" lt 18; then
                     error="You need Linux Mint 18 or newer"
                 elif compareVersions "$__os_release" lt 19; then
                     __os_ubuntu_ver="16.04"
                     __os_debian_ver="9"
-                else
+                elif compareVersions "$__os_release" lt 20; then
                     __os_ubuntu_ver="18.04"
                     __os_debian_ver="10"
+                else
+                    __os_ubuntu_ver="20.04"
+                    __os_debian_ver="11"
                 fi
             fi
             ;;
@@ -220,8 +225,10 @@ function get_os_version() {
                 __os_debian_ver="8"
             elif compareVersions "$__os_release" lt 18.04; then
                 __os_debian_ver="9"
-            else
+            elif compareVersions "$__os_release" lt 20.04; then
                 __os_debian_ver="10"
+            else
+                __os_debian_ver="11"
             fi
             __os_ubuntu_ver="$__os_release"
             ;;
