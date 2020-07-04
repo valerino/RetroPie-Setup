@@ -17,4 +17,5 @@ tmp/
 sshconfig
 *.code-workspace
 *.swp
+glsl-shaders
 
