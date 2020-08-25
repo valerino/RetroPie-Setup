@@ -49,23 +49,14 @@ done
 
 echo "\t_romdir: $_romdir"
 
-
-
-echo "Spec file contents:"
-echo `cat "$_lastparam"`
+#echo "Spec file contents:"
+#echo `cat "$_lastparam"`
 
 
 # generate parameters for mess.cmd
 _cmdarr=()
-
-
-
 # the contents of the rom file specified are the actual system to run
-#orig: _cmdarr+=( "$_system" )
-#new:
-
 _cmdarr+=( `cat "$_lastparam"` )
-
 
 _cmdarr+=( "-rp" )
 _cmdarr+=( "$_biosdir" )
@@ -73,8 +64,6 @@ _cmdarr+=( "-cfg_directory" )
 _cmdarr+=( "$_cfgdir" )
 _cmdarr+=( "-artpath" )
 _cmdarr+=( "$_romdir/artwork" )
-
-
 
 # generate mess.cmd
 echo "\t/tmp/mess.cmd content: ${_cmdarr[@]}"
