@@ -3,6 +3,17 @@ RetroPie-Setup
 
 [here are the additional improvements in this fork](./README-FORK.md)
 
+Installation
+------------
+
+To upgrade a vanilla RetroPie install to use these advanced scripts:
+
+- cd ~
+- mv RetroPie-Setup RetroPie-Setup-backup
+- git clone https://github.com/valerino/RetroPie-Setup.git
+- cd RetroPie-Setup
+- sudo ./retropie_setup.sh
+
 General Usage
 -------------
 

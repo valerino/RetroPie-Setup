@@ -431,14 +431,31 @@ function setupDirectories() {
     mkUserDir "$romdir"
     mkUserDir "$biosdir"
 
-    # one config directory for crt, one for hdmi, defaults to hdmi
-    mkUserDir "$configdir.hdmi"
-    mkUserDir "$configdir.crt"
-    if [[ ! -L "$configdir"  ]]; then
-        # initialize
-        rm -rf "$configdir"
-	    ln -s "$configdir.hdmi" "$configdir"
+    if [[ -d "$configdir.hdmi" ]]; then
+        # hdmi directory already exists so this script has been run previously,
+        # ensure config directory exists only as a link:
+        if [[ ! -L "$configdir"  ]]; then
+            # initialize
+            rm -rf "$configdir"
+            ln -s "$configdir.hdmi" "$configdir"
+            chown $user:$user "$configdir"
+            # change the link ownership as well
+            chown -h $user:$user "$configdir"
+        fi
+    else
+        # Migrate a standard RetroPie install - one config directory for crt, one for hdmi, defaults to hdmi:
+
+        # crt:
+        mkUserDir "$configdir.crt"
+
+        # hdmi: move existing config dir to config.hdmi to preserve any existing configs:
+        mv "$configdir" "$configdir.hdmi"
+
+        # link config --> config.hdmi
+        ln -s "$configdir.hdmi" "$configdir"
         chown $user:$user "$configdir"
+        # change the link ownership as well
+        chown -h $user:$user "$configdir"
     fi
 
     mkUserDir "$configdir/all"
