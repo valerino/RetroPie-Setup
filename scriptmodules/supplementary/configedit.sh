@@ -365,7 +365,7 @@ function basic_menu_configedit() {
             fi
             options+=("$i" "$desc")
             ((i++))
-        done < <(find "$configdir" -type f -regex ".*/retroarch.cfg" | sort)
+        done < <(find -L "$configdir" -type f -regex ".*/retroarch.cfg" | sort)
         local choice=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
         if [[ -n "$choice" ]]; then
             basic_configedit "${configs[choice]}"
