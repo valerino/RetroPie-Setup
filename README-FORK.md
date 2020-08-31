@@ -54,8 +54,12 @@ __NOTE__: the following scripts allows utilizing the specified systems through M
 * lr-mess-dragon32: Dragon 32
 * lr-mess-electron: Acorn Electron (overrides runcommand.sh, read https://retropie.org.uk/forum/post/217553)
 * lr-mess-fm7: Fujitsu FM7
+* lr-mess-gamate: Bit Corporation Gamate
+* lr-mess-gameking: TimeTop GameKing
 * lr-mess-gamepock: Epoch Gamepocket Computer
 * lr-mess-gx4000: Amstrad GX-4000
+* lr-mess-gmaster: Hartung Game Master
+* lr-mess-gp32: Game Park GP32
 * lr-mess-m5: Sord M5
 * lr-mess-mo5: Thomson MO5
 * lr-mess-megaduck: Mega Duck
@@ -67,8 +71,11 @@ __NOTE__: the following scripts allows utilizing the specified systems through M
 * lr-mess-samcoupe: MGT Sam Coupé
 * lr-mess-sc3000: Sega SC-3000
 * lr-mess-scv: Epoch Super Cassette Vision (just needs to map joypad correctly)
+* lr-mess-sf7000: Sega SF-7000 Super Control Station
+* lr-mess-sorcerer: Exidy Sorcerer
 * lr-mess-svi318: Spectravideo 318/328
 * lr-mess-supervision: Watara Supervision
+* lr-mess-supracan: Super A'Can
 * lr-mess-ti99: Texas Instrument TI/994A (contributed by @roslof)
 * lr-mess-to8: Thomson TO8 (no sound)
 * lr-mess-trs-80: Tandy TRS-80 Model 3
