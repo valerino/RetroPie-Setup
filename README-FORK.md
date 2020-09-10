@@ -40,32 +40,42 @@ __NOTE__: the following scripts allows utilizing the specified systems through M
 
 * lr-mess-adam: Coleco Adam
 * lr-mess-advision: Entex AdventureVision
+* lr-mess-alice: Matra & Hachette Alice
 * lr-mess-apfm1000: APF M1000 The Imagination Machine
 * lr-mess-apple: Apple I
 * lr-mess-apple2: Apple II/E
 * lr-mess-apple2gs: Apple II GS
+* lr-mess-aquarius: Mattel Aquarius
 * lr-mess-arcadia: Emerson Arcadia 2001
 * lr-archimedes: Acorn Archimedes (partially working)
 * lr-mess-astrocade: Bally Astrocade
 * lr-mess-bbcmicro: BBC Model B (overrides runcommand.sh, read https://retropie.org.uk/forum/post/217553)
 * lr-mess-cdi: Philips CD-i
+* lr-mess-cgenie: EACA Computers Colour Genie EG2000
 * lr-mess-coco: Tandy Color Computer
 * lr-mess-crvision: VTech Creativision
 * lr-mess-dragon32: Dragon 32
 * lr-mess-electron: Acorn Electron (overrides runcommand.sh, read https://retropie.org.uk/forum/post/217553)
+* lr-mess-exl100: Exelvision EXL 100
 * lr-mess-fm7: Fujitsu FM7
 * lr-mess-gamate: Bit Corporation Gamate
+* lr-mess-gamecom: Tiger Game.com
 * lr-mess-gameking: TimeTop GameKing
 * lr-mess-gamepock: Epoch Gamepocket Computer
 * lr-mess-gx4000: Amstrad GX-4000
 * lr-mess-gmaster: Hartung Game Master
 * lr-mess-gp32: Game Park GP32
+* lr-mess-interact: Interact Family Computer
+* lr-mess-jupace: Jupiter Cantab Ace
 * lr-mess-m5: Sord M5
-* lr-mess-mo5: Thomson MO5
+* lr-mess-microvsn: Milton Bradley Microvision
 * lr-mess-megaduck: Mega Duck
+* lr-mess-mo5: Thomson MO5
 * lr-mess-multivision: Othello Multivision
 * lr-mess-mz700: Sharp MZ700
 * lr-mess-oric: Oric Atmos (contributed by @roslof)
+* lr-mess-pdp1: Digital Equipment Corporation PDP-1
+* lr-mess-pockstat: Sony PocketStation
 * lr-mess-pv1000: Casio PV-1000
 * lr-mess-pv2000: Casio PV-2000
 * lr-mess-samcoupe: MGT Sam Coupé
@@ -73,12 +83,15 @@ __NOTE__: the following scripts allows utilizing the specified systems through M
 * lr-mess-scv: Epoch Super Cassette Vision (just needs to map joypad correctly)
 * lr-mess-sf7000: Sega SF-7000 Super Control Station
 * lr-mess-sorcerer: Exidy Sorcerer
+* lr-mess-studio2: RCA Studio II
+* lr-mess-sv8000: Bandai Super Vision 8000
 * lr-mess-svi318: Spectravideo 318/328
 * lr-mess-supervision: Watara Supervision
 * lr-mess-supracan: Super A'Can
 * lr-mess-ti99: Texas Instrument TI/994A (contributed by @roslof)
 * lr-mess-to8: Thomson TO8 (no sound)
 * lr-mess-trs-80: Tandy TRS-80 Model 3
+* lr-mess-tutor: Tomy Tutor
 * lr-mess-vectrex: GCE Vectrex (contributed by @roslof)
 * lr-mess-vc4000: Interton VC4000 (partially working)
 * lr-mess-vg5000: Philips VG-5000
