@@ -73,6 +73,11 @@ function conf_binary_vars() {
     __binary_url="$__binary_base_url/$__binary_path"
 
     __archive_url="https://files.retropie.org.uk/archives"
+
+    [[ -z "$__gpg_signing_key" ]] && __gpg_signing_key="retropieproject@gmail.com"
+    if ! gpg --list-keys "$__gpg_signing_key" &>/dev/null; then
+        gpg --keyserver keyserver.ubuntu.com --recv-keys DC9D77FF8208FFC51D8F50CCF1B030906A3B0D31
+    fi
 }
 
 function conf_build_vars() {
@@ -281,7 +286,7 @@ function get_os_version() {
 }
 
 function get_retropie_depends() {
-    local depends=(git dialog wget gcc g++ build-essential unzip xmlstarlet python3-pyudev ca-certificates)
+    local depends=(git dialog wget gcc g++ build-essential unzip xmlstarlet python3-pyudev ca-certificates dirmngr)
 
     [[ -n "$DISTCC_HOSTS" ]] && depends+=(distcc)
 
@@ -377,11 +382,26 @@ function get_platform() {
                 __platform="armv7-mali"
                 ;;
             *)
-                case $architecture in
-                    i686|x86_64|amd64)
-                        __platform="x86"
-                        ;;
-                esac
+                # jetson nano and tegra x1 can be identified via /sys/firmware/devicetree/base/model
+                local model_path="/sys/firmware/devicetree/base/model"
+                if [[ -f "$model_path" ]]; then
+                    # ignore end null to avoid bash warning
+                    local model=$(tr -d '\0' <$model_path)
+                    case "$model" in
+                        "NVIDIA Jetson Nano Developer Kit")
+                            __platform="jetson-nano"
+                            ;;
+                        icosa)
+                            __platform="tegra-x1"
+                            ;;
+                    esac
+                else
+                    case $architecture in
+                        i686|x86_64|amd64)
+                            __platform="x86"
+                            ;;
+                    esac
+                fi
                 ;;
         esac
     fi
@@ -470,7 +490,16 @@ function platform_odroid-xu() {
     __default_cpu_flags="-mcpu=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=hard"
     # required for mali-fbdev headers to define GL functions
     __default_cflags=" -DGL_GLEXT_PROTOTYPES"
-    __platform_flags="arm armv7 neon mali gles"
+    __platform_flags+=(arm armv7 neon mali gles)
+}
+
+function platform_tegra-x1() {
+    __default_cpu_flags="-mcpu=cortex-a57"
+    __platform_flags+=(aarch64 x11 gl)
+}
+
+function platform_jetson-nano() {
+    platform_tegra-x1
 }
 
 function platform_tinker() {
