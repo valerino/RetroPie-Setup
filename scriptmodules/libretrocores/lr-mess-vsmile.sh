@@ -9,23 +9,19 @@
 # at https://raw.githubusercontent.com/RetroPie/RetroPie-Setup/master/LICENSE.md
 #
 
-rp_module_id="lr-mess-adam"
-rp_module_name="Coleco ADAM"
-rp_module_ext=".zip .rom .col .bin .wav .ddp .dsk .d77 .d88 .1dd .dfi .imd .ipf .mfi .mfm .td0 .cqm .cqi"
+rp_module_id="lr-mess-vsmile"
+rp_module_name="VTech V.Smile"
+rp_module_ext=".zip .bin"
 rp_module_desc="MESS emulator ($rp_module_name) - MESS Port for libretro"
 rp_module_help="ROM Extensions: $rp_module_ext\n\n
 Put games in:\n
-$romdir/adam\n\n
-Put BIOS files in $biosdir:\n
-adam.zip, adam_fdc.zip, adam_prn.zip\n\n
-How to load games:\n
-http://www.progettoemma.net/mess/system.php?machine=adam"
+$romdir/vsmile"
 
 rp_module_licence="GPL2 https://raw.githubusercontent.com/libretro/mame/master/LICENSE.md"
 rp_module_section="exp"
 rp_module_flags=""
 
-function depends_lr-mess-adam() {
+function depends_lr-mess-vsmile() {
 	local _mess=$(dirname "$md_inst")/lr-mess/mess_libretro.so
 	if [[ ! -f "$_mess" ]]; then
 		printMsgs dialog "cannot find '$_mess' !\n\nplease install 'lr-mess' package."
@@ -33,22 +29,22 @@ function depends_lr-mess-adam() {
 	fi
 }
 
-function sources_lr-mess-adam() {
+function sources_lr-mess-vsmile() {
 	true
 }
 
-function build_lr-mess-adam() {
+function build_lr-mess-vsmile() {
 	true
 }
 
-function install_lr-mess-adam()  {
+function install_lr-mess-vsmile() {
 	true
 }
 
-function configure_lr-mess-adam() {
+function configure_lr-mess-vsmile() {
 	local _mess=$(dirname "$md_inst")/lr-mess/mess_libretro.so
 	local _retroarch_bin="$rootdir/emulators/retroarch/bin/retroarch"
-	local _system="adam"
+	local _system="vsmile"
 	local _config="$configdir/$_system/retroarch.cfg"
 	local _add_config="$_config.add"
 	local _custom_coreconfig="$configdir/$_system/custom-core-options.cfg"
@@ -58,8 +54,8 @@ function configure_lr-mess-adam() {
 	ensureSystemretroconfig "$_system"
 
 	# ensure it works without softlists, using a custom per-fake-core config
-	iniConfig " = " "\"" "$_custom_coreconfig"
-	iniSet "mame_softlists_enable" "disabled"
+        iniConfig " = " "\"" "$_custom_coreconfig"
+        iniSet "mame_softlists_enable" "disabled"
 	iniSet "mame_softlists_auto_media" "disabled"
 	iniSet "mame_boot_from_cli" "disabled"
 
@@ -78,10 +74,8 @@ function configure_lr-mess-adam() {
 	# ensure run_mess.sh script is executable
 	chmod 755 "$_script"
 
-		# add the emulators.cfg as normal, pointing to the above script
-	addEmulator 1 "$md_id-cart" "$_system" "$_script $_retroarch_bin $_mess $_config adam $biosdir -cart1 %ROM%"
-        addEmulator 0 "$md_id-disk" "$_system" "$_script $_retroarch_bin $_mess $_config adam $biosdir -flop1 %ROM%"
-        addEmulator 2 "$md_id-cass" "$_system" "$_script $_retroarch_bin $_mess $_config adam $biosdir -cass1 %ROM%"
+	# add the emulators.cfg as normal, pointing to the above script
+	addEmulator 1 "$md_id" "$_system" "$_script $_retroarch_bin $_mess $_config vsmile $biosdir -cart %ROM%"
 
 	# add system to es_systems.cfg as normal
 	addSystem "$_system" "$md_name" "$md_ext"

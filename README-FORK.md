@@ -55,9 +55,12 @@ __NOTE__: the following scripts allows utilizing the specified systems through M
 * lr-mess-coco: Tandy Color Computer
 * lr-mess-crvision: VTech Creativision
 * lr-mess-dragon32: Dragon 32
+* lr-mess-einstein: Tatung Einstein TC-01
 * lr-mess-electron: Acorn Electron (overrides runcommand.sh, read https://retropie.org.uk/forum/post/217553)
 * lr-mess-exl100: Exelvision EXL 100
 * lr-mess-fm7: Fujitsu FM7
+* lr-mess-fmtowns: Fujitsu FM Towns
+* lr-mess-galaxy: Elektronika inzenjering Galaxy
 * lr-mess-gamate: Bit Corporation Gamate
 * lr-mess-gamecom: Tiger Game.com
 * lr-mess-gameking: TimeTop GameKing
@@ -71,11 +74,16 @@ __NOTE__: the following scripts allows utilizing the specified systems through M
 * lr-mess-microvsn: Milton Bradley Microvision
 * lr-mess-megaduck: Mega Duck
 * lr-mess-mo5: Thomson MO5
+* lr-mess-mtx512: Memotech MTX 512
 * lr-mess-multivision: Othello Multivision
 * lr-mess-mz700: Sharp MZ700
+* lr-mess-orao: PEL Varazdin Orao
 * lr-mess-oric: Oric Atmos (contributed by @roslof)
 * lr-mess-pdp1: Digital Equipment Corporation PDP-1
+* lr-mess-pmd85: Tesla PMD-85
 * lr-mess-pockstat: Sony PocketStation
+* lr-mess-pokemini: Nintendo Pokemon Mini
+* lr-mess-primo: Microkey Primo
 * lr-mess-pv1000: Casio PV-1000
 * lr-mess-pv2000: Casio PV-2000
 * lr-mess-samcoupe: MGT Sam Coupé
@@ -88,10 +96,14 @@ __NOTE__: the following scripts allows utilizing the specified systems through M
 * lr-mess-svi318: Spectravideo 318/328
 * lr-mess-supervision: Watara Supervision
 * lr-mess-supracan: Super A'Can
+* lr-mess-svmu: Sega Visual Memory Unit
 * lr-mess-ti99: Texas Instrument TI/994A (contributed by @roslof)
 * lr-mess-to8: Thomson TO8 (no sound)
 * lr-mess-trs-80: Tandy TRS-80 Model 3
 * lr-mess-tutor: Tomy Tutor
+* lr-mess-tvc64: Videoton TVC 64
+* lr-mess-uzebox: Belogic Uzebox
 * lr-mess-vectrex: GCE Vectrex (contributed by @roslof)
 * lr-mess-vc4000: Interton VC4000 (partially working)
 * lr-mess-vg5000: Philips VG-5000
+* lr-mess-vsmile: VTech V.Smile
