@@ -11,7 +11,7 @@
 
 rp_module_id="lr-mess-exl100"
 rp_module_name="Exelvision EXL 100"
-rp_module_ext=".zip .bin .rom"
+rp_module_ext=".zip .wav .rom"
 rp_module_desc="MESS emulator ($rp_module_name) - MESS Port for libretro"
 rp_module_help="ROM Extensions: $rp_module_ext\n\n
 Put games in:\n
