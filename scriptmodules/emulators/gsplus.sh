@@ -16,7 +16,7 @@ rp_module_section="exp"
 rp_module_flags=""
 
 function depends_gsplus() {
-    getDepends libsdl2-dev libsdl2-image-dev re2c
+    getDepends libsdl2-dev libsdl2-image-dev re2c libreadline-dev
 }
 
 function sources_gsplus() {
