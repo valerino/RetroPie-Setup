@@ -82,8 +82,8 @@ function depends_setup() {
         printMsgs "dialog" "Raspbian/Debian Jessie and versions of Ubuntu below 18.04 are no longer supported.\n\nPlease install RetroPie from a fresh image (or if running Ubuntu, upgrade your OS)."
     fi
 
-    if [[ "$__os_debian_ver" -eq 9 ]] && [[ "$__has_binaries" -eq 1 ]]; then
-        printMsgs "dialog" "You are currently running RetroPie on a Raspbian Stretch based distribution.\n\nWe will soon stop building binaries for your system, and recommend you switch to a newer RetroPie image.\n\nYou will still be able to update packages from source when binaries are no longer available, but due to the age of Raspbian Stretch we can't guarantee all software included will work."
+    if [[ "$__os_debian_ver" -eq 9 ]] && [[ "$__os_id" == "Raspbian" ]]; then
+        printMsgs "dialog" "Your version of RetroPie which is based on Raspbian Stretch is no longer supported.\n\nWe recommend you install the latest RetroPie image.\n\nPre-built binaries are now disabled for your system. You can still update packages from source, but due to the age of Raspbian Stretch we can't guarantee all software included will work."
     fi
 
     # make sure user has the correct group permissions
@@ -98,6 +98,9 @@ function depends_setup() {
 
     # remove all but the last 20 logs
     find "$__logdir" -type f | sort | head -n -20 | xargs -d '\n' --no-run-if-empty rm
+
+    # set a global __setup to 1 which is used to adjust package function behaviour if called from the setup gui
+    __setup=1
 }
 
 function updatescript_setup()
@@ -254,7 +257,7 @@ function package_setup() {
                 rps_logInit
                 {
                     rps_logStart
-                    rp_installModule "$idx" "$mode" "force"
+                    rp_installModule "$idx" "$mode"
                     rps_logEnd
                 } &> >(_setup_gzip_log "$logfilename")
                 rps_printInfo "$logfilename"
@@ -371,10 +374,10 @@ function section_gui_setup() {
                         # if we are updating, skip packages that are not installed
                         if [[ "$mode" == "update" ]]; then
                             if rp_isInstalled "$idx"; then
-                                rp_installModule "$idx" "_update_" || break
+                                rp_installModule "$idx" "_update_"
                             fi
                         else
-                            rp_installModule "$idx" "_auto_" || break
+                            rp_installModule "$idx" "_auto_"
                         fi
                     done
                     rps_logEnd
@@ -490,7 +493,7 @@ function update_packages_gui_setup() {
 function basic_install_setup() {
     local idx
     for idx in $(rp_getSectionIds core) $(rp_getSectionIds main); do
-        rp_installModule "$idx" || return 1
+        rp_installModule "$idx"
     done
     return 0
 }
