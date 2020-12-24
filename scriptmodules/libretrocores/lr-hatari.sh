@@ -11,7 +11,7 @@
 
 rp_module_id="lr-hatari"
 rp_module_desc="Atari emulator - Hatari port for libretro"
-rp_module_help="ROM Extensions: .st .stx .img .rom .raw .ipf .ctr .zip\n\nCopy your Atari ST games to $romdir/atarist"
+rp_module_help="ROM Extensions: .st .stx .img .rom .raw .ipf .ctr .zip\n\nCopy your Atari ST games to $romdir/atarist.\n\nYou may need to install libcapsimage v5: follow docs https://github.com/keirf/Disk-Utilities#ipf--ct-raw-support-the-capssps-ipf-support-library to build and install the library, then copy all .h files to /usr/local/include/caps5."
 rp_module_licence="GPL2 https://raw.githubusercontent.com/libretro/hatari/master/gpl.txt"
 rp_module_section="exp"
 
