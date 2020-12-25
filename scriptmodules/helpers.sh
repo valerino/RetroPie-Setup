@@ -443,13 +443,14 @@ function setupDirectories() {
             chown -h $user:$user "$configdir"
         fi
     else
-        # Migrate a standard RetroPie install - one config directory for crt, one for hdmi, defaults to hdmi:
+        # install from scratch or migrate a standard RetroPie install - one config directory for crt, one for hdmi, defaults to hdmi:
+	mkUserDir "$configdir"
 
         # crt:
         mkUserDir "$configdir.crt"
 
         # hdmi: move existing config dir to config.hdmi to preserve any existing configs:
-        mv "$configdir" "$configdir.hdmi"
+	mv "$configdir" "$configdir.hdmi"
 
         # link config --> config.hdmi
         ln -s "$configdir.hdmi" "$configdir"
