@@ -13,7 +13,7 @@ rp_module_id="lr-hatari"
 rp_module_desc="Atari emulator - Hatari port for libretro"
 rp_module_help="ROM Extensions: .st .stx .img .rom .raw .ipf .ctr .zip\n\nCopy your Atari ST games to $romdir/atarist.\n\n \
 You may need to install libcapsimage v5 to install from source, following these docs (will be integrated later in the install script):\n\n \
-cd /tmp\n\
+cd /tmp\n \
 wget http://www.kryoflux.com/download/spsdeclib_5.1_source.zip\n \
 unzip spsdeclib_5.1_source.zip\n \
 unzip capsimg_source_linux_macosx.zip\n \
