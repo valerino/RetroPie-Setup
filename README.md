@@ -14,6 +14,9 @@ To upgrade a vanilla RetroPie install to use these advanced scripts:
 - cd RetroPie-Setup
 - sudo ./retropie_setup.sh
 
+_or, you may just install from scratch using this repo alone!_
+
+
 General Usage
 -------------
 
