@@ -13,20 +13,20 @@ rp_module_id="lr-hatari"
 rp_module_desc="Atari emulator - Hatari port for libretro"
 rp_module_help="ROM Extensions: .st .stx .img .rom .raw .ipf .ctr .zip\n\nCopy your Atari ST games to $romdir/atarist.\n\n \
 You may need to install libcapsimage v5 to install from source, following these docs (will be integrated later in the install script):\n\n \
-cd /tmp \
-wget http://www.kryoflux.com/download/spsdeclib_5.1_source.zip \
-unzip spsdeclib_5.1_source.zip \
-unzip capsimg_source_linux_macosx.zip \
-cd capsimg_source_linux_macosx/CAPSImg \
-chmod u+x configure \
-./configure \
-make \
-sudo make install \
-cd /usr/local/lib \
-sudo ln -s libcapsimage.so.5.1 libcapsimage.so.5 \
-sudo mkdir -p /usr/local/include/caps5 \
-sudo cp /tmp/capsimg_source_linux_macosx/Core/*.h /usr/local/include/caps5/ \
-sudo cp /tmp/capsimg_source_linux_macosx/LibIPF/*.h /usr/local/include/caps5/"
+cd /tmp\n\
+wget http://www.kryoflux.com/download/spsdeclib_5.1_source.zip\n \
+unzip spsdeclib_5.1_source.zip\n \
+unzip capsimg_source_linux_macosx.zip\n \
+cd capsimg_source_linux_macosx/CAPSImg\n \
+chmod u+x configure\n \
+./configure\n \
+make\n \
+sudo make install\n \
+cd /usr/local/lib\n \
+sudo ln -s libcapsimage.so.5.1 libcapsimage.so.5\n \
+sudo mkdir -p /usr/local/include/caps5\n \
+sudo cp /tmp/capsimg_source_linux_macosx/Core/*.h /usr/local/include/caps5/\n \
+sudo cp /tmp/capsimg_source_linux_macosx/LibIPF/*.h /usr/local/include/caps5/\n"
 
 rp_module_licence="GPL2 https://raw.githubusercontent.com/libretro/hatari/master/gpl.txt"
 rp_module_section="exp"
