@@ -338,7 +338,7 @@ function choose_config_configedit() {
         configs+=("$config")
         options+=("$i" "$config")
         ((i++))
-    done < <(find "$path" -type f -regex "$include" ! -regex "$exclude" ! -regex ".*/downloaded_images/.*" | sort)
+    done < <(find -L "$path" -type f -regex "$include" ! -regex "$exclude" ! -regex ".*/downloaded_images/.*" | sort)
     local choice=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
     if [[ -n "$choice" ]]; then
         echo "${configs[choice]}"
